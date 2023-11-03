@@ -56,6 +56,16 @@ class BaseViewController: UIViewController {
         return label
     }
     
+    func createTitleButton(title: String, titleColor: UIColor, font: UIFont, backgroundColor: UIColor, cornerRadius: CGFloat) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = cornerRadius
+        button.titleLabel?.font = font
+        return button
+    }
+    
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: nil, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
