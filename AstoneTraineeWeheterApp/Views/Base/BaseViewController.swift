@@ -1,0 +1,68 @@
+import UIKit
+import SnapKit
+
+class BaseViewController: UIViewController {
+    
+    private lazy var backgroundImageView: UIImageView = {
+        let image = UIImageView()
+        image.image = .Common.baackground
+        image.clipsToBounds = true
+        return image
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addBackground()
+    }
+    
+    private func addBackground() {
+        view.addSubview(backgroundImageView)
+        
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+    
+    func addSubviews(views: UIView...) {
+        views.forEach({ view.addSubview($0) })
+    }
+    
+    func createStackView(
+        for views: UIView..., axis: NSLayoutConstraint.Axis,
+        spacing: CGFloat,
+        distribution: UIStackView.Distribution,
+        alignment: UIStackView.Alignment
+    ) -> UIStackView {
+        let stack = UIStackView(arrangedSubviews: views)
+        stack.axis = axis
+        stack.spacing = spacing
+        stack.distribution = distribution
+        stack.alignment = alignment
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }
+    
+    func createLabel(
+        text: String, font: UIFont, textColor: UIColor,
+        alignment: NSTextAlignment, numbersOfRows : Int
+    ) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = font
+        label.textColor = textColor
+        label.textAlignment = alignment
+        label.numberOfLines = numbersOfRows
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: nil, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

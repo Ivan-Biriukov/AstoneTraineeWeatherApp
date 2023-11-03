@@ -10,9 +10,18 @@
 		5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A32AF58CD600B0834B /* AppDelegate.swift */; };
 		5739C7A62AF58CD600B0834B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A52AF58CD600B0834B /* SceneDelegate.swift */; };
 		5739C7A82AF58CD600B0834B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A72AF58CD600B0834B /* ViewController.swift */; };
-		5739C7AB2AF58CD600B0834B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7A92AF58CD600B0834B /* Main.storyboard */; };
 		5739C7AD2AF58CDA00B0834B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7AC2AF58CDA00B0834B /* Assets.xcassets */; };
 		5739C7B02AF58CDA00B0834B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */; };
+		5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7BE2AF5908500B0834B /* BaseViewController.swift */; };
+		579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */; };
+		579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */; };
+		579DE3C82AF5A99B0036078E /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */; };
+		579DE3CA2AF5A9AE0036078E /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C92AF5A9AE0036078E /* Poppins-SemiBold.ttf */; };
+		579DE3CD2AF5AA8C0036078E /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3CC2AF5AA8C0036078E /* Bindings.swift */; };
+		579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */; };
+		579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */; };
+		579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D22AF5AD560036078E /* UIImage + Extension.swift */; };
+		579DE3D62AF5AEAC0036078E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 579DE3D52AF5AEAC0036078E /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +29,18 @@
 		5739C7A32AF58CD600B0834B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5739C7A52AF58CD600B0834B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5739C7A72AF58CD600B0834B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5739C7AA2AF58CD600B0834B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5739C7AC2AF58CDA00B0834B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5739C7AF2AF58CDA00B0834B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5739C7B12AF58CDA00B0834B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5739C7BE2AF5908500B0834B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		579DE3C92AF5A9AE0036078E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		579DE3CC2AF5AA8C0036078E /* Bindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
+		579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
+		579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
+		579DE3D22AF5AD560036078E /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				579DE3D62AF5AEAC0036078E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +74,95 @@
 		5739C7A22AF58CD600B0834B /* AstoneTraineeWeheterApp */ = {
 			isa = PBXGroup;
 			children = (
-				5739C7A32AF58CD600B0834B /* AppDelegate.swift */,
-				5739C7A52AF58CD600B0834B /* SceneDelegate.swift */,
-				5739C7A72AF58CD600B0834B /* ViewController.swift */,
-				5739C7A92AF58CD600B0834B /* Main.storyboard */,
-				5739C7AC2AF58CDA00B0834B /* Assets.xcassets */,
-				5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */,
-				5739C7B12AF58CDA00B0834B /* Info.plist */,
+				5739C7B72AF58EE800B0834B /* Models */,
+				5739C7B82AF58EEF00B0834B /* Views */,
+				5739C7B92AF58EF600B0834B /* ViewModels */,
+				5739C7BA2AF58F0100B0834B /* Application */,
+				5739C7BB2AF58F1100B0834B /* Extensions */,
+				5739C7BC2AF58F2400B0834B /* Supporting_Files */,
 			);
 			path = AstoneTraineeWeheterApp;
+			sourceTree = "<group>";
+		};
+		5739C7B72AF58EE800B0834B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5739C7B82AF58EEF00B0834B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5739C7BD2AF5907400B0834B /* Base */,
+				5739C7A72AF58CD600B0834B /* ViewController.swift */,
+				5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5739C7B92AF58EF600B0834B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				579DE3CB2AF5AA740036078E /* Bindings */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5739C7BA2AF58F0100B0834B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5739C7A52AF58CD600B0834B /* SceneDelegate.swift */,
+				5739C7A32AF58CD600B0834B /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		5739C7BB2AF58F1100B0834B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */,
+				579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */,
+				579DE3D22AF5AD560036078E /* UIImage + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5739C7BC2AF58F2400B0834B /* Supporting_Files */ = {
+			isa = PBXGroup;
+			children = (
+				579DE3C22AF5A9670036078E /* Fonts */,
+				5739C7B12AF58CDA00B0834B /* Info.plist */,
+				5739C7AC2AF58CDA00B0834B /* Assets.xcassets */,
+			);
+			path = Supporting_Files;
+			sourceTree = "<group>";
+		};
+		5739C7BD2AF5907400B0834B /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5739C7BE2AF5908500B0834B /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		579DE3C22AF5A9670036078E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				579DE3C92AF5A9AE0036078E /* Poppins-SemiBold.ttf */,
+				579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */,
+				579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */,
+				579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		579DE3CB2AF5AA740036078E /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				579DE3CC2AF5AA8C0036078E /* Bindings.swift */,
+			);
+			path = Bindings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +181,9 @@
 			dependencies = (
 			);
 			name = AstoneTraineeWeheterApp;
+			packageProductDependencies = (
+				579DE3D52AF5AEAC0036078E /* SnapKit */,
+			);
 			productName = AstoneTraineeWeheterApp;
 			productReference = 5739C7A02AF58CD600B0834B /* AstoneTraineeWeheterApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +212,9 @@
 				Base,
 			);
 			mainGroup = 5739C7972AF58CD600B0834B;
+			packageReferences = (
+				579DE3D42AF5AEAC0036078E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 5739C7A12AF58CD600B0834B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +230,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5739C7B02AF58CDA00B0834B /* LaunchScreen.storyboard in Resources */,
+				579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */,
+				579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */,
+				579DE3CA2AF5A9AE0036078E /* Poppins-SemiBold.ttf in Resources */,
 				5739C7AD2AF58CDA00B0834B /* Assets.xcassets in Resources */,
-				5739C7AB2AF58CD600B0834B /* Main.storyboard in Resources */,
+				579DE3C82AF5A99B0036078E /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +245,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,
+				579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */,
+				579DE3CD2AF5AA8C0036078E /* Bindings.swift in Sources */,
 				5739C7A82AF58CD600B0834B /* ViewController.swift in Sources */,
+				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,
+				579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */,
 				5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */,
 				5739C7A62AF58CD600B0834B /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +259,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5739C7A92AF58CD600B0834B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5739C7AA2AF58CD600B0834B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +393,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RR26756PN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AstoneTraineeWeheterApp/Info.plist;
+				INFOPLIST_FILE = AstoneTraineeWeheterApp/Supporting_Files/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +407,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeheterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +425,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RR26756PN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AstoneTraineeWeheterApp/Info.plist;
+				INFOPLIST_FILE = AstoneTraineeWeheterApp/Supporting_Files/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +439,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeheterApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +470,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		579DE3D42AF5AEAC0036078E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		579DE3D52AF5AEAC0036078E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 579DE3D42AF5AEAC0036078E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5739C7982AF58CD600B0834B /* Project object */;
 }

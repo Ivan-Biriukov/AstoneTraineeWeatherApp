@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  AstoneTraineeWeheterApp
-//
-//  Created by иван Бирюков on 03.11.2023.
-//
+
 
 import UIKit
 
