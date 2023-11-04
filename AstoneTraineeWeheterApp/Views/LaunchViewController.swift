@@ -27,6 +27,7 @@ final class LaunchViewController: BaseViewController {
     // MARK: - Propertyes
     
     private let constants: Constants
+    var coordinator: AppCoordinator?
     
     // MARK: - UI Elements
     
@@ -147,7 +148,7 @@ private extension LaunchViewController {
 
 private extension LaunchViewController {
     @objc func nextButtonTaped() {
-        
+        coordinator?.showMainVC()
     }
 }
 

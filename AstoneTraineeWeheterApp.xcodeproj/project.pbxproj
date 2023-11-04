@@ -8,16 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A32AF58CD600B0834B /* AppDelegate.swift */; };
-		5739C7A62AF58CD600B0834B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A52AF58CD600B0834B /* SceneDelegate.swift */; };
 		5739C7A82AF58CD600B0834B /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7A72AF58CD600B0834B /* LaunchViewController.swift */; };
 		5739C7AD2AF58CDA00B0834B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7AC2AF58CDA00B0834B /* Assets.xcassets */; };
 		5739C7B02AF58CDA00B0834B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */; };
 		5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7BE2AF5908500B0834B /* BaseViewController.swift */; };
+		579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E52AF6640B00EAD20E /* Coordinator.swift */; };
+		579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */; };
 		579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */; };
 		579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */; };
 		579DE3C82AF5A99B0036078E /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */; };
 		579DE3CA2AF5A9AE0036078E /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C92AF5A9AE0036078E /* Poppins-SemiBold.ttf */; };
-		579DE3CD2AF5AA8C0036078E /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3CC2AF5AA8C0036078E /* Bindings.swift */; };
+		579DE3CD2AF5AA8C0036078E /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3CC2AF5AA8C0036078E /* Dynamic.swift */; };
 		579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */; };
 		579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */; };
 		579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D22AF5AD560036078E /* UIImage + Extension.swift */; };
@@ -27,17 +28,18 @@
 /* Begin PBXFileReference section */
 		5739C7A02AF58CD600B0834B /* AstoneTraineeWeheterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstoneTraineeWeheterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5739C7A32AF58CD600B0834B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5739C7A52AF58CD600B0834B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5739C7A72AF58CD600B0834B /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		5739C7AC2AF58CDA00B0834B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5739C7AF2AF58CDA00B0834B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5739C7B12AF58CDA00B0834B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5739C7BE2AF5908500B0834B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		579BB5E52AF6640B00EAD20E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		579DE3C92AF5A9AE0036078E /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		579DE3CC2AF5AA8C0036078E /* Bindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
+		579DE3CC2AF5AA8C0036078E /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		579DE3D22AF5AD560036078E /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				5739C7B72AF58EE800B0834B /* Models */,
 				5739C7B82AF58EEF00B0834B /* Views */,
 				5739C7B92AF58EF600B0834B /* ViewModels */,
+				579BB5E32AF663E400EAD20E /* Coordinators */,
 				5739C7BA2AF58F0100B0834B /* Application */,
 				5739C7BB2AF58F1100B0834B /* Extensions */,
 				5739C7BC2AF58F2400B0834B /* Supporting_Files */,
@@ -112,7 +115,6 @@
 		5739C7BA2AF58F0100B0834B /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				5739C7A52AF58CD600B0834B /* SceneDelegate.swift */,
 				5739C7A32AF58CD600B0834B /* AppDelegate.swift */,
 			);
 			path = Application;
@@ -146,6 +148,23 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		579BB5E32AF663E400EAD20E /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				579BB5E42AF663F600EAD20E /* Protocols */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		579BB5E42AF663F600EAD20E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				579BB5E52AF6640B00EAD20E /* Coordinator.swift */,
+				579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		579DE3C22AF5A9670036078E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +179,7 @@
 		579DE3CB2AF5AA740036078E /* Bindings */ = {
 			isa = PBXGroup;
 			children = (
-				579DE3CC2AF5AA8C0036078E /* Bindings.swift */,
+				579DE3CC2AF5AA8C0036078E /* Dynamic.swift */,
 			);
 			path = Bindings;
 			sourceTree = "<group>";
@@ -247,12 +266,13 @@
 			files = (
 				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,
 				579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */,
-				579DE3CD2AF5AA8C0036078E /* Bindings.swift in Sources */,
+				579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */,
+				579DE3CD2AF5AA8C0036078E /* Dynamic.swift in Sources */,
 				5739C7A82AF58CD600B0834B /* LaunchViewController.swift in Sources */,
 				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,
 				579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */,
 				5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */,
-				5739C7A62AF58CD600B0834B /* SceneDelegate.swift in Sources */,
+				579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +417,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -429,7 +449,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
