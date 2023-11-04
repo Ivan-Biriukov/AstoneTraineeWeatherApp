@@ -1,9 +1,32 @@
 import UIKit
 import SnapKit
 
-class LaunchViewController: BaseViewController {
+extension LaunchViewController {
+    struct Constants {
+        
+        var weatherConditionWidth: CGFloat {
+            return UIScreen.main.bounds.width - 80
+        }
+
+        var weatherConditionHeight: CGFloat {
+            return 150
+        }
+
+        var weatherConditionCenterX: CGFloat {
+            return (UIScreen.main.bounds.width - weatherConditionWidth) / 2
+        }
+
+        var weatherConditionCenterY: CGFloat {
+            return (UIScreen.main.bounds.height - weatherConditionHeight) / 2
+        }
+    }
+}
+
+final class LaunchViewController: BaseViewController {
     
     // MARK: - Propertyes
+    
+    private let constants: Constants
     
     // MARK: - UI Elements
     
@@ -23,9 +46,11 @@ class LaunchViewController: BaseViewController {
     }()
     
     private let weatherConditionImageView: UIImageView = {
-        let image = UIImageView(image: .Launch.weatherCondition)
+        let image = UIImageView()
+        image.image = .Launch.weatherCondition
         image.contentMode = .scaleAspectFit
         image.alpha = 0
+        image.translatesAutoresizingMaskIntoConstraints = false
         
         return image
     }()
@@ -38,6 +63,16 @@ class LaunchViewController: BaseViewController {
         return button
     }()
     
+    // MARK: - Init
+    
+    init() {
+        self.constants = Constants()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - LifeCYcle Methods
 
@@ -45,6 +80,11 @@ class LaunchViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        startWeatherConditionFrame()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,12 +118,6 @@ private extension LaunchViewController {
             make.height.equalTo(200)
         }
         
-        weatherConditionImageView.snp.makeConstraints { make in
-            make.height.width.equalTo(150)
-            make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview().inset(40)
-        }
-        
         nextStepButton.snp.makeConstraints { make in
             make.height.equalTo(72)
             make.leading.trailing.equalToSuperview().inset(62)
@@ -91,10 +125,14 @@ private extension LaunchViewController {
         }
     }
     
+    func startWeatherConditionFrame() {
+        weatherConditionImageView.frame = CGRect(x: constants.weatherConditionCenterX, y: constants.weatherConditionCenterY, width: constants.weatherConditionWidth, height: constants.weatherConditionHeight)
+    }
+    
     func launchAnimation() {
         UIView.animate(withDuration: 5, animations: {
             self.weatherConditionImageView.alpha = 1
-            
+            self.weatherConditionImageView.frame = CGRect(x: self.constants.weatherConditionCenterX + 60, y: self.constants.weatherConditionCenterY - 60, width: self.constants.weatherConditionWidth, height: self.constants.weatherConditionHeight)
         }, completion: { done in
             if done {
                 UIView.animate(withDuration: 2) {
