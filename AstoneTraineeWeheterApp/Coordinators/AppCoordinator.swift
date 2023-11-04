@@ -22,7 +22,7 @@ class AppCoordinator: Coordinator {
     func showMainVC() {
         let vc = MainViewController()
         vc.coordinator = self
-       // vc.viewModel =
+        vc.viewModel = MainViewModel()
         navigationController.viewControllers.removeAll()
         navigationController.pushViewController(vc, animated: true)
     }

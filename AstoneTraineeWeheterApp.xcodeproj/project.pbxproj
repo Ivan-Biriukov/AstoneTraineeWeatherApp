@@ -19,6 +19,7 @@
 		579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */; };
 		579BB5F22AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */; };
 		579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */; };
+		579BB5F62AF7085700EAD20E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F52AF7085700EAD20E /* MainViewModel.swift */; };
 		579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */; };
 		579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */; };
 		579DE3C82AF5A99B0036078E /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */; };
@@ -45,6 +46,7 @@
 		579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
+		579BB5F52AF7085700EAD20E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				579DE3CB2AF5AA740036078E /* Bindings */,
+				579BB5F52AF7085700EAD20E /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */,
 				579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */,
 				579DE3CD2AF5AA8C0036078E /* Dynamic.swift in Sources */,
+				579BB5F62AF7085700EAD20E /* MainViewModel.swift in Sources */,
 				5739C7A82AF58CD600B0834B /* LaunchViewController.swift in Sources */,
 				579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */,
 				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,

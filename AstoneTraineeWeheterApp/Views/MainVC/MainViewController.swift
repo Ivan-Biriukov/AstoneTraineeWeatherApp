@@ -6,6 +6,9 @@ class MainViewController: BaseViewController {
     // MARK: - Propertyes
     
     var coordinator: AppCoordinator?
+    var viewModel: MainViewModel?
+    
+    private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
     
@@ -64,6 +67,7 @@ class MainViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         hideKeyboardWhenTappedAround()
+        bindViewModel()
     }
 }
 
@@ -99,7 +103,7 @@ private extension MainViewController {
 
 private extension MainViewController {
     @objc func searchButtonTaped() {
-        
+        viewModel?.searchButtonPressed(with: searchField.text!)
     }
 }
 
@@ -119,6 +123,10 @@ extension MainViewController: UITextFieldDelegate {
 
 extension MainViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, canEditItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -126,7 +134,7 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        return recentsLocations.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -135,7 +143,23 @@ extension MainViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        let currentCell = recentsLocations[indexPath.row]
+        cell.fill(viewModel: currentCell)
+        
         return cell
     }
+}
+
+// MARK: - ViewModel Bindings
+
+private extension MainViewController {
     
+    func bindViewModel() {
+        viewModel?.currentSearch.bind({ searchResult in
+            self.recentsLocations.append(searchResult)
+            DispatchQueue.main.async {
+                self.searchResultsCollectionView.reloadData()
+            }
+        })
+    }
 }
