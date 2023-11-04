@@ -20,7 +20,11 @@ class AppCoordinator: Coordinator {
     }
     
     func showMainVC() {
-        
+        let vc = MainViewController()
+        vc.coordinator = self
+       // vc.viewModel =
+        navigationController.viewControllers.removeAll()
+        navigationController.pushViewController(vc, animated: true)
     }
  
 //    func showLogin() {

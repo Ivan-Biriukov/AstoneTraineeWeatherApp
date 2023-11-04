@@ -14,6 +14,11 @@
 		5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7BE2AF5908500B0834B /* BaseViewController.swift */; };
 		579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E52AF6640B00EAD20E /* Coordinator.swift */; };
 		579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */; };
+		579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */; };
+		579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */; };
+		579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */; };
+		579BB5F22AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */; };
+		579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */; };
 		579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */; };
 		579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */; };
 		579DE3C82AF5A99B0036078E /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */; };
@@ -35,6 +40,11 @@
 		5739C7BE2AF5908500B0834B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		579BB5E52AF6640B00EAD20E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
 		579DE3C32AF5A97B0036078E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		579DE3C52AF5A98C0036078E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		579DE3C72AF5A99B0036078E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -98,8 +108,9 @@
 			isa = PBXGroup;
 			children = (
 				5739C7BD2AF5907400B0834B /* Base */,
-				5739C7A72AF58CD600B0834B /* LaunchViewController.swift */,
 				5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */,
+				5739C7A72AF58CD600B0834B /* LaunchViewController.swift */,
+				579BB5E92AF6AB8B00EAD20E /* MainVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -126,6 +137,8 @@
 				579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */,
 				579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */,
 				579DE3D22AF5AD560036078E /* UIImage + Extension.swift */,
+				579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */,
+				579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -152,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				579BB5E42AF663F600EAD20E /* Protocols */,
+				579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -160,9 +174,26 @@
 			isa = PBXGroup;
 			children = (
 				579BB5E52AF6640B00EAD20E /* Coordinator.swift */,
-				579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		579BB5E92AF6AB8B00EAD20E /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				579BB5F02AF6E0F900EAD20E /* Cells */,
+				579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */,
+			);
+			path = MainVC;
+			sourceTree = "<group>";
+		};
+		579BB5F02AF6E0F900EAD20E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */,
+				579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		579DE3C22AF5A9670036078E /* Fonts */ = {
@@ -264,15 +295,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */,
 				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,
 				579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */,
 				579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */,
 				579DE3CD2AF5AA8C0036078E /* Dynamic.swift in Sources */,
 				5739C7A82AF58CD600B0834B /* LaunchViewController.swift in Sources */,
+				579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */,
 				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,
 				579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */,
+				579BB5F22AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift in Sources */,
 				5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */,
 				579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */,
+				579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */,
+				579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

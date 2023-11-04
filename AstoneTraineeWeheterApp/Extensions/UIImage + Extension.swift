@@ -17,4 +17,10 @@ extension UIImage {
             return UIImage(named: "weatherCondition")
         }
     }
+    
+    struct Main {
+        static var searchButton: UIImage? {
+            return UIImage(named: "barSearch")
+        }
+    }
 }
