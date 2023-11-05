@@ -126,6 +126,7 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let current = recentsLocations[indexPath.row]
         current.action()
+        coordinator?.showResultVC()
     }
     
 }

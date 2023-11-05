@@ -15,7 +15,6 @@ class AppCoordinator: Coordinator {
     func showLaunchVC() {
         let vc = LaunchViewController()
         vc.coordinator = self
-        navigationController.viewControllers.removeAll()
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -27,11 +26,11 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
  
-//    func showLogin() {
-//        let vc = AuthViewController.createObject()
-//        vc.coordinator = self
-//        vc.viewModel = AuthViewModel()
-//        vc.viewModel?.isLoggedIn = isLoggedIn
-//        navigationController.pushViewController(vc, animated: true)
-//    }
+    func showResultVC() {
+        let vc = ResultViewController()
+        vc.coordinator = self
+        vc.viewModel = ResultViewModel()
+        navigationController.modalPresentationStyle = .formSheet
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

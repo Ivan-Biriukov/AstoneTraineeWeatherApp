@@ -7,7 +7,7 @@ final class MainViewModel {
     
     
     func searchButtonPressed(with text: String) {
-        currentSearch.value = SearchCellViewModel(cityName: text, dayTemp: 01, nightTepm: 02, wetherConditionImage: UIImage(systemName: "plus")!, currentTemp: 09, action: {print("123")})
+        currentSearch.value = SearchCellViewModel(cityName: text, dayTemp: 01, nightTepm: 02, wetherConditionImage: UIImage(systemName: "plus")!, currentTemp: 09, action: {})
     }
     
 }

@@ -3,7 +3,7 @@ import SnapKit
 
 class BaseViewController: UIViewController {
     
-    private lazy var backgroundImageView: UIImageView = {
+    lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.image = .Common.baackground
         image.clipsToBounds = true
