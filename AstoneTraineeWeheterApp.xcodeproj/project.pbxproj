@@ -29,6 +29,9 @@
 		579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */; };
 		579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579DE3D22AF5AD560036078E /* UIImage + Extension.swift */; };
 		579DE3D62AF5AEAC0036078E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 579DE3D52AF5AEAC0036078E /* SnapKit */; };
+		57A9605E2AF7B51C00FCD537 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9605D2AF7B51C00FCD537 /* ResultViewController.swift */; };
+		57A960612AF7E62500FCD537 /* ResultForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A960602AF7E62500FCD537 /* ResultForecastCollectionViewCell.swift */; };
+		57A960632AF81B2C00FCD537 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A960622AF81B2C00FCD537 /* ResultViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		579DE3D22AF5AD560036078E /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		57A9605D2AF7B51C00FCD537 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		57A960602AF7E62500FCD537 /* ResultForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		57A960622AF81B2C00FCD537 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,7 @@
 				5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */,
 				5739C7A72AF58CD600B0834B /* LaunchViewController.swift */,
 				579BB5E92AF6AB8B00EAD20E /* MainVC */,
+				57A9605C2AF7B4E100FCD537 /* ResultVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -122,6 +129,7 @@
 			children = (
 				579DE3CB2AF5AA740036078E /* Bindings */,
 				579BB5F52AF7085700EAD20E /* MainViewModel.swift */,
+				57A960622AF81B2C00FCD537 /* ResultViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -218,6 +226,23 @@
 			path = Bindings;
 			sourceTree = "<group>";
 		};
+		57A9605C2AF7B4E100FCD537 /* ResultVC */ = {
+			isa = PBXGroup;
+			children = (
+				57A9605F2AF7E60A00FCD537 /* Cells */,
+				57A9605D2AF7B51C00FCD537 /* ResultViewController.swift */,
+			);
+			path = ResultVC;
+			sourceTree = "<group>";
+		};
+		57A9605F2AF7E60A00FCD537 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				57A960602AF7E62500FCD537 /* ResultForecastCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,12 +324,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */,
+				57A960632AF81B2C00FCD537 /* ResultViewModel.swift in Sources */,
 				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,
 				579DE3CF2AF5AAB50036078E /* UIFont + Extension.swift in Sources */,
 				579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */,
 				579DE3CD2AF5AA8C0036078E /* Dynamic.swift in Sources */,
 				579BB5F62AF7085700EAD20E /* MainViewModel.swift in Sources */,
 				5739C7A82AF58CD600B0834B /* LaunchViewController.swift in Sources */,
+				57A960612AF7E62500FCD537 /* ResultForecastCollectionViewCell.swift in Sources */,
 				579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */,
 				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,
 				579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */,
@@ -312,6 +339,7 @@
 				5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */,
 				579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */,
 				579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */,
+				57A9605E2AF7B51C00FCD537 /* ResultViewController.swift in Sources */,
 				579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
