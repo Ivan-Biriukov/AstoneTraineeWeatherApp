@@ -19,8 +19,6 @@ extension UIImage {
     }
     
     struct Main {
-        static var searchButton: UIImage? {
-            return UIImage(named: "barSearch")
-        }
+
     }
 }
