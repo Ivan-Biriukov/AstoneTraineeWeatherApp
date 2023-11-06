@@ -23,7 +23,8 @@ struct Weather: Codable {
 }
 
 struct Main: Codable {
-    let temp, tempMin, tempMax: Double?
+    let temp: Double
+    let tempMin, tempMax: Double?
     let pressure, humidity, seaLevel, grndLevel: Int?
 }
 

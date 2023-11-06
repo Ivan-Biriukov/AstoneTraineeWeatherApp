@@ -157,7 +157,7 @@ extension MainViewController: UICollectionViewDataSource {
 private extension MainViewController {
     
     func bindViewModel() {
-        viewModel?.currentSearch.bind({ searchResult in
+        viewModel?.currentDayWeather.bind({ searchResult in
             self.recentsLocations.append(searchResult)
             DispatchQueue.main.async {
                 self.searchResultsCollectionView.reloadData()
