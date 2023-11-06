@@ -5,7 +5,7 @@ final class MainViewModel {
     // MARK: - Propertyes
     
     let weatherNetwork : NetworkManagerProtocol = NetworkManager()
-    var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImage: UIImage(systemName: "plus")!, currentTemp: 0, action: {}))
+    var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
     var fiveDaysWeatherForecast = Dynamic(ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String()))
     
     // MARK: - Methods
@@ -20,7 +20,7 @@ final class MainViewModel {
                     let dayTemp = weather.main.temp_max
                     let nightTemp = weather.main.temp_min
                     
-                    self.currentDayWeather.value = SearchCellViewModel(cityName: weather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImage: UIImage(systemName: "plus")!, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
+                    self.currentDayWeather.value = SearchCellViewModel(cityName: weather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
                 }
                 catch {
                     print(error.localizedDescription)

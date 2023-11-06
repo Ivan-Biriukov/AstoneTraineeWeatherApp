@@ -1,10 +1,10 @@
-import UIKit.UIImage
+import Foundation
 
 struct SearchCellViewModel {
     let cityName: String
     let dayTemp: Int
     let nightTepm: Int
-    let wetherConditionImage: UIImage
+    let wetherConditionImageID: String
     let currentTemp: Int
     let action: () -> ()
 }

@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class SearchResultCollectionViewCell: UICollectionViewCell {
     
@@ -110,7 +111,8 @@ class SearchResultCollectionViewCell: UICollectionViewCell {
     func fill(viewModel: SearchCellViewModel) {
         cityLabel.text = viewModel.cityName
         dayNightValueLabel.text = "\(viewModel.dayTemp)° / \(viewModel.nightTepm)°"
-        weatherImageView.image = viewModel.wetherConditionImage
+        weatherImageView.kf.indicatorType = .activity
+        weatherImageView.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(viewModel.wetherConditionImageID)@2x.png"))
         temperatureLabel.text = "\(viewModel.currentTemp)°"
     }
     
