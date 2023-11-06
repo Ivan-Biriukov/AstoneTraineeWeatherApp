@@ -18,18 +18,19 @@ struct Coord: Codable {
 // main - common weather condition description - rain; weatherDescription - full weather condition description - light rain
 struct Weather: Codable {
     let id: Int
-    let main, weatherDescription, icon: String
+    let main, icon: String
+    let weatherDescription: String?
 }
 
 struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity, seaLevel, grndLevel: Int
+    let temp, tempMin, tempMax: Double?
+    let pressure, humidity, seaLevel, grndLevel: Int?
 }
 
 struct Wind: Codable {
     let speed: Double
     let deg: Int
-    let gust: Double
+    let gust: Double?
 }
 
 struct Sys: Codable {

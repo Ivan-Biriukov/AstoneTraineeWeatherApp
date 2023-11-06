@@ -100,12 +100,12 @@ final class LaunchViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         launchAnimation()
-        networkManager.fetchCurrentWeatherByCityName(cityName: "London") { [weak self] result in
+        networkManager.fetchCurrentWeatherByCityName(cityName: "Izmir") { [weak self] result in
             switch result {
             case .success(let data):
                 do {
                     let weatherInfo = try JSONDecoder().decode(CurrentWeatherModel.self, from: data)
-                    print(weatherInfo.main.temp)
+                    print(weatherInfo.main.temp!)
                 }
                 catch {
                     print(error)

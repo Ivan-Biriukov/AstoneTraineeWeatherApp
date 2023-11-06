@@ -46,17 +46,22 @@ extension WeatherAPI: EndPointType {
         case .getWeatherByCityName(city: let city):
             return .request(
                 bodyParam: nil,
-                urlParam: ["q" : city, "units" : "metric"]
+                urlParam: ["q" : city, "units" : "metric", "appid" : apiKey]
             )
         }
     }
     
+//    var header: HTTPHeader? {
+//        return [
+//            "appid": apiKey,
+//            "lang": "en",
+//            "units": "metric",
+//            "version": "2.5"
+//        ]
+//    }
+    
     var header: HTTPHeader? {
-        return [
-            "appid": apiKey,
-            "lang": "ru",
-            "units": "metric",
-            "version": "2.5"
-        ]
+        return nil
     }
+
 }
