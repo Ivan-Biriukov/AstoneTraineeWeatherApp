@@ -44,6 +44,7 @@
 		57A960962AF8239B00FCD537 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A960952AF8239B00FCD537 /* NetworkManager.swift */; };
 		57A960982AF823D900FCD537 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A960972AF823D900FCD537 /* WeatherAPI.swift */; };
 		57A9609D2AF8243A00FCD537 /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9609C2AF8243A00FCD537 /* URLRequest+Extension.swift */; };
+		57A9609F2AF8544C00FCD537 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		57A960952AF8239B00FCD537 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		57A960972AF823D900FCD537 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		57A9609C2AF8243A00FCD537 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
+		57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		5739C7B72AF58EE800B0834B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				57A9609D2AF8243A00FCD537 /* URLRequest+Extension.swift in Sources */,
 				57A960982AF823D900FCD537 /* WeatherAPI.swift in Sources */,
 				579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */,
+				57A9609F2AF8544C00FCD537 /* CurrentWeatherModel.swift in Sources */,
 				57A9608C2AF822FB00FCD537 /* EndPointType.swift in Sources */,
 				57A960842AF8227100FCD537 /* NetworkError.swift in Sources */,
 			);
