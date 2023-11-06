@@ -104,6 +104,7 @@ private extension MainViewController {
 private extension MainViewController {
     @objc func searchButtonTaped() {
         viewModel?.searchButtonPressed(with: searchField.text!)
+        bindViewModel()
     }
 }
 
