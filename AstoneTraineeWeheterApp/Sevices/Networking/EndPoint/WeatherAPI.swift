@@ -7,6 +7,9 @@ enum NetworkEnvironment {
 
 enum WeatherAPI {
     case getWeatherByCityName(city: String)
+    case getWeatherByLonLat(lon: Double, lat: Double)
+    case getFiveDayForecastByLonLat(lon: Double, lat: Double)
+    case getFiveDaysForecastByCityName(city: String)
 }
 
 extension WeatherAPI: EndPointType {
@@ -31,6 +34,12 @@ extension WeatherAPI: EndPointType {
         switch self {
         case .getWeatherByCityName:
             return "weather"
+        case .getWeatherByLonLat:
+            return "weather"
+        case .getFiveDayForecastByLonLat:
+            return "forecast"
+        case .getFiveDaysForecastByCityName:
+            return "forecast"
         }
     }
     
@@ -38,27 +47,31 @@ extension WeatherAPI: EndPointType {
         switch self {
         case .getWeatherByCityName:
             return .get
+        case .getWeatherByLonLat:
+            return .get
+        case .getFiveDayForecastByLonLat:
+            return .get
+        case .getFiveDaysForecastByCityName:
+            return .get
         }
     }
     
     var task: HTTPTask {
         switch self {
-        case .getWeatherByCityName(city: let city):
+        case .getWeatherByCityName(city: let city), .getFiveDaysForecastByCityName(city: let city):
             return .request(
                 bodyParam: nil,
-                urlParam: ["q" : city, "units" : "metric", "appid" : apiKey]
+                urlParam: ["q" : city, "units" : "metric", "appid" : apiKey, "lang": "en_ru"]
+            )
+            
+        case .getWeatherByLonLat(lon: let lon, lat: let lat),
+                .getFiveDayForecastByLonLat(lon: let lon, lat: let lat):
+            return .request(
+                bodyParam: nil,
+                urlParam: ["lat" : "\(lat)", "lon" : "\(lon)", "units" : "metric", "appid" : apiKey, "lang": "en_ru"]
             )
         }
     }
-    
-//    var header: HTTPHeader? {
-//        return [
-//            "appid": apiKey,
-//            "lang": "en",
-//            "units": "metric",
-//            "version": "2.5"
-//        ]
-//    }
     
     var header: HTTPHeader? {
         return nil

@@ -29,15 +29,6 @@ final class LaunchViewController: BaseViewController {
     private let constants: Constants
     var coordinator: AppCoordinator?
     
-    
-    // MARK: - API CALL TEST
-    
-    let networkManager: NetworkManagerProtocol = NetworkManager()
-    
-    
-    
-    
-    
     // MARK: - UI Elements
     
     private lazy var weatherTitleLabel: UILabel = {
@@ -100,20 +91,6 @@ final class LaunchViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         launchAnimation()
-        networkManager.fetchCurrentWeatherByCityName(cityName: "Izmir") { [weak self] result in
-            switch result {
-            case .success(let data):
-                do {
-                    let weatherInfo = try JSONDecoder().decode(CurrentWeatherModel.self, from: data)
-                    print(weatherInfo.main.temp!)
-                }
-                catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }
 
