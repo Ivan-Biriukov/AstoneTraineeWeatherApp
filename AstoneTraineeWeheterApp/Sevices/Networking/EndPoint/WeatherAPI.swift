@@ -1,5 +1,5 @@
 import Foundation
-import CryptoKit
+//import CryptoKit
 
 enum NetworkEnvironment {
     case WeatherV2point5
@@ -15,7 +15,31 @@ enum WeatherAPI {
 extension WeatherAPI: EndPointType {
     
     var apiKey: String {
-        return "48c416dce3eb3c49c52da05f47b1c033"
+        var key: String = ""
+        
+        guard let path = Bundle.main.path(forResource: "APIKeysList", ofType: "plist") else {
+            fatalError("APIKeysList.plist not found")
+        }
+        
+        guard let plistData = FileManager.default.contents(atPath: path) else {
+            fatalError("Unable to read APIKeysList.plist")
+        }
+        
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        
+        do {
+            let plist = try PropertyListSerialization.propertyList(from: plistData, options: .mutableContainersAndLeaves, format: &format) as? [String: Any]
+            
+            guard let apiKey = plist?["OpenWeatherMapAPIKey"] as? String else {
+                fatalError("OpenWeatherMapAPIKey not found in APIKeysList.plist")
+            }
+            
+            key = apiKey
+        } catch {
+            fatalError("Error reading APIKeysList.plist: \(error)")
+        }
+        
+        return key
     }
     
     var environmentBaseUrl: String {
@@ -76,5 +100,4 @@ extension WeatherAPI: EndPointType {
     var header: HTTPHeader? {
         return nil
     }
-
 }

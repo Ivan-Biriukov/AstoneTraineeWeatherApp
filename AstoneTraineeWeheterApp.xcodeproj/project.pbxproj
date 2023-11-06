@@ -13,6 +13,7 @@
 		5739C7B02AF58CDA00B0834B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5739C7AE2AF58CDA00B0834B /* LaunchScreen.storyboard */; };
 		5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5739C7BE2AF5908500B0834B /* BaseViewController.swift */; };
 		5795EA3F2AF9188400B6EA3B /* FiveDaysForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795EA3E2AF9188400B6EA3B /* FiveDaysForecastModel.swift */; };
+		5795EA412AF921A500B6EA3B /* APIKeysList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5795EA402AF921A400B6EA3B /* APIKeysList.plist */; };
 		579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E52AF6640B00EAD20E /* Coordinator.swift */; };
 		579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */; };
 		579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */; };
@@ -57,6 +58,7 @@
 		5739C7B12AF58CDA00B0834B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5739C7BE2AF5908500B0834B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5795EA3E2AF9188400B6EA3B /* FiveDaysForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysForecastModel.swift; sourceTree = "<group>"; };
+		5795EA402AF921A400B6EA3B /* APIKeysList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeysList.plist; sourceTree = "<group>"; };
 		579BB5E52AF6640B00EAD20E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				579DE3C22AF5A9670036078E /* Fonts */,
 				5739C7B12AF58CDA00B0834B /* Info.plist */,
 				5739C7AC2AF58CDA00B0834B /* Assets.xcassets */,
+				5795EA402AF921A400B6EA3B /* APIKeysList.plist */,
 			);
 			path = Supporting_Files;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5739C7B02AF58CDA00B0834B /* LaunchScreen.storyboard in Resources */,
+				5795EA412AF921A500B6EA3B /* APIKeysList.plist in Resources */,
 				579DE3C62AF5A98D0036078E /* Poppins-Medium.ttf in Resources */,
 				579DE3C42AF5A97B0036078E /* Poppins-Bold.ttf in Resources */,
 				579DE3CA2AF5A9AE0036078E /* Poppins-SemiBold.ttf in Resources */,
