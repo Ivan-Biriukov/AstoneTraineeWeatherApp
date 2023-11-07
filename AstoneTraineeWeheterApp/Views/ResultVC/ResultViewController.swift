@@ -254,7 +254,7 @@ extension ResultViewController: UICollectionViewDelegate {
         guard let currentWeatherInfo = forecastDataArray[indexPath.row].fullWeatherInformation else {
             return
         }
-        print(currentWeatherInfo.dt_txt)
+        BaseAlertView.shared.showFullWeatherAlert(with: currentWeatherInfo, on: self)
     }
 }
 
