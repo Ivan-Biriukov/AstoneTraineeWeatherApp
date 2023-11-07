@@ -21,4 +21,10 @@ extension UIImage {
     struct Main {
 
     }
+    
+    struct Alert {
+        static var closeIcon: UIImage? {
+            return UIImage(named: "closeAlertIcon")
+        }
+    }
 }

@@ -18,7 +18,6 @@ final class BaseAlertView {
         let view = UIView()
         view.backgroundColor = .black
         view.alpha = 0
-        
         return view
     }()
     
@@ -28,9 +27,68 @@ final class BaseAlertView {
         view.layer.cornerRadius = 20
         view.layer.borderColor = UIColor.systemBlue.cgColor
         view.layer.borderWidth = 1
-        
         return view
     }()
+    
+    let dateLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsSemiBold(of: 16)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let predictibleTempLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let feelsLikeTempLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let pressureLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let humidityLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let wind: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    let labelsStak: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 5
+        return stack
+    }()
+    
+    
+    // MARK: - Methods
     
     func showFullWeatherAlert(with data: List, on vc: UIViewController) {
         
@@ -46,68 +104,13 @@ final class BaseAlertView {
         alertView.frame = CGRect(origin: CGPoint(x: 40, y: -300), size: CGSize(width: targetView.frame.width - 60, height: 300))
         targetView.addSubview(alertView)
         
-        let dateLabel: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsSemiBold(of: 16)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = data.dt_txt
-            return lb
-        }()
-        
-        let predictibleTempLabel: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsRegular(of: 14)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = "Prediction temperature: \(data.main.temp)°"
-            return lb
-        }()
-        
-        let feelsLikeTempLabel: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsRegular(of: 14)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = "Prediction temperature: \(Int(data.main.feels_like.rounded(.toNearestOrAwayFromZero)))°"
-            return lb
-        }()
-        
-        let pressureLabel: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsRegular(of: 14)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = "Pressure: \(data.main.pressure) mm"
-            return lb
-        }()
-        
-        let humidityLabel: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsRegular(of: 14)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = "Humidity: \(data.main.humidity) %"
-            return lb
-        }()
-        
-        let wind: UILabel = {
-            let lb = UILabel()
-            lb.font = .poppinsRegular(of: 14)
-            lb.textAlignment = .center
-            lb.textColor = .systemBackground
-            lb.text = "Wind speed: \(data.wind.speed) m/s. Wind derection: \(data.wind.deg)"
-            return lb
-        }()
-        
-        let labelsStak: UIStackView = {
-            let stack = UIStackView(arrangedSubviews: [dateLabel, predictibleTempLabel, feelsLikeTempLabel, pressureLabel, humidityLabel, wind])
-            stack.axis = .vertical
-            stack.distribution = .fill
-            stack.alignment = .center
-            stack.spacing = 5
-            return stack
-        }()
+        dateLabel.text = data.dt_txt
+        predictibleTempLabel.text = "Prediction temperature: \(data.main.temp.rounded(.toNearestOrAwayFromZero))°"
+        feelsLikeTempLabel.text = "Feels like: \(Int(data.main.feels_like))°"
+        pressureLabel.text = "Pressure: \(data.main.pressure) mm"
+        humidityLabel.text = "Humidity: \(data.main.humidity) %"
+        wind.text = "Wind speed: \(data.wind.speed) m/s. Wind derection: \(data.wind.deg)"
+        [dateLabel, predictibleTempLabel, feelsLikeTempLabel, pressureLabel, humidityLabel, wind].forEach({labelsStak.addArrangedSubview($0)})
         
         alertView.addSubview(labelsStak)
         
@@ -117,14 +120,14 @@ final class BaseAlertView {
         
         let dismissButton: UIButton = {
             let btn = UIButton(type: .system)
-            btn.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
-            btn.addTarget(self, action: #selector(dismissButtonTaped), for: .touchUpInside)
+            btn.setImage(.Alert.closeIcon, for: .normal)
+            btn.addTarget(BaseAlertView.shared.self, action: #selector(dismissButtonTaped), for: .touchUpInside)
             return btn
         }()
         
         alertView.addSubview(dismissButton)
         dismissButton.snp.makeConstraints { make in
-            make.height.width.equalTo(45)
+            make.height.width.equalTo(35)
             make.top.equalToSuperview().inset(-10)
             make.trailing.equalToSuperview().inset(-10)
         }
@@ -140,7 +143,7 @@ final class BaseAlertView {
         })
     }
     
-    @objc private func dismissButtonTaped() {
+    @objc func dismissButtonTaped() {
         
         guard let targetView = myTargetView else {
             return
