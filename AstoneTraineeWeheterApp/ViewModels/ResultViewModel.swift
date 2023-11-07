@@ -6,7 +6,7 @@ final class ResultViewModel {
     
     let weatherNetwork : NetworkManagerProtocol = NetworkManager()
     
-    var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
+    var currentDayWeather = Dynamic(ResultCurrentLocationModel(cityName: "", minTemp: 0, maxTemp: 0, wetherConditionImageID: "", currentTemp: 0, weatherConditionName: ""))
     var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String())])
     
     // MARK: - Methods
@@ -26,10 +26,11 @@ private extension ResultViewModel {
                 do {
                     let weather = try JSONDecoder().decode(CurrentWeatherModel.self, from: data)
                     
-                    let dayTemp = weather.main.temp_max
-                    let nightTemp = weather.main.temp_min
+                    let maxTemp = weather.main.temp_max
+                    let minTemp = weather.main.temp_min
+                    let currentTemp = weather.main.temp
                     
-                    self?.currentDayWeather.value = SearchCellViewModel(cityName: weather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
+                    self?.currentDayWeather.value = .init(cityName: weather.name, minTemp: Int(minTemp.rounded(.toNearestOrAwayFromZero)), maxTemp: Int(maxTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather[0].icon, currentTemp: Int(currentTemp.rounded(.toNearestOrAwayFromZero)), weatherConditionName: weather.weather[0].weatherDescription ?? weather.weather[0].main)
                 }
                 catch {
                     print(error.localizedDescription)

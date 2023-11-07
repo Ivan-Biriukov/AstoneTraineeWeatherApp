@@ -279,21 +279,21 @@ extension ResultViewController: UICollectionViewDataSource {
 private extension ResultViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ currentWeather in
-            DispatchQueue.main.async { [weak self] in
-                self?.locationTitleLabel.text = currentWeather.cityName
-                self?.currentTempLabel.text = "\(currentWeather.currentTemp)°"
-                self?.weatherImageView.kf.indicatorType = .activity
-                self?.weatherImageView.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(currentWeather.wetherConditionImageID)@2x.png"))
-               // self?.weatherConditionLabel.text = currentWeather.
-                self?.minTempLabel.text = "Min: \(currentWeather.nightTepm)°"
-                self?.maxTempLabel.text = "Max: \(currentWeather.dayTemp)°"
+            DispatchQueue.main.async { [unowned self] in
+                self.locationTitleLabel.text = currentWeather.cityName
+                self.currentTempLabel.text = "\(currentWeather.currentTemp)°"
+                self.weatherImageView.kf.indicatorType = .activity
+                self.weatherImageView.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(currentWeather.wetherConditionImageID)@2x.png"))
+                self.weatherConditionLabel.text = currentWeather.weatherConditionName
+                self.minTempLabel.text = "Min: \(currentWeather.minTemp)°"
+                self.maxTempLabel.text = "Max: \(currentWeather.maxTemp)°"
             }
         })
         
         viewModel?.fiveDaysWeatherForecast.bind({ forecastWeather in
-            DispatchQueue.main.async { [weak self] in
-                self?.forecastDataArray = forecastWeather
-                self?.forecastCollectionView.reloadData()
+            DispatchQueue.main.async { [unowned self] in
+                self.forecastDataArray = forecastWeather
+                self.forecastCollectionView.reloadData()
             }
         })
     }
