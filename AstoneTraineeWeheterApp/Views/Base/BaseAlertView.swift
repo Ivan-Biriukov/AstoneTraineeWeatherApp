@@ -11,6 +11,8 @@ final class BaseAlertView {
     
     static let shared = BaseAlertView()
     private var myTargetView: UIView?
+    private var myCloseButton: UIButton?
+    private var targetViewController: UIViewController?
     
     // MARK: - UI Elements
     
@@ -96,6 +98,8 @@ final class BaseAlertView {
             return
         }
         
+        targetViewController = vc
+        
         myTargetView = targetView
         
         backgroundView.frame = targetView.bounds
@@ -124,6 +128,7 @@ final class BaseAlertView {
             btn.addTarget(BaseAlertView.shared.self, action: #selector(dismissButtonTaped), for: .touchUpInside)
             return btn
         }()
+        myCloseButton = dismissButton
         
         alertView.addSubview(dismissButton)
         dismissButton.snp.makeConstraints { make in
@@ -134,6 +139,7 @@ final class BaseAlertView {
         
         UIView.animate(withDuration: 0.3, animations: {
             self.backgroundView.alpha = Constants.backgroundAlpha
+            self.targetViewController?.navigationController?.navigationBar.isUserInteractionEnabled = false
         }, completion: { done in
             if done {
                 UIView.animate(withDuration: 0.3, animations: {
@@ -145,7 +151,7 @@ final class BaseAlertView {
     
     @objc func dismissButtonTaped() {
         
-        guard let targetView = myTargetView else {
+        guard let targetView = myTargetView, let closeButton = myCloseButton else {
             return
         }
         
@@ -155,9 +161,11 @@ final class BaseAlertView {
             if done {
                 UIView.animate(withDuration: 0.3, animations: {
                     self.backgroundView.alpha = 0
+                    self.targetViewController?.navigationController?.navigationBar.isUserInteractionEnabled = true
                 }, completion: { done in
                     if done {
                         [self.backgroundView, self.alertView].forEach({$0.removeFromSuperview()})
+                        closeButton.removeFromSuperview()
                     }
                 })
             }
