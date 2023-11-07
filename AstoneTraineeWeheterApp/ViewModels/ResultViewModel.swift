@@ -7,7 +7,8 @@ final class ResultViewModel {
     let weatherNetwork : NetworkManagerProtocol = NetworkManager()
     
     var currentDayWeather = Dynamic(ResultCurrentLocationModel(cityName: "", minTemp: 0, maxTemp: 0, wetherConditionImageID: "", currentTemp: 0, weatherConditionName: ""))
-    var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String())])
+    
+    var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String(), fullWeatherInformation: nil)])
     
     // MARK: - Methods
     
@@ -52,7 +53,7 @@ private extension ResultViewModel {
                     let forecasts = try JSONDecoder().decode(FiveDaysForecastModel.self, from: data)
                     
                     for day in forecasts.list {
-                        weatherForecasts.append(ForecastCollectionViewModel(tempValue: Int(day.main.temp.rounded(.toNearestOrAwayFromZero)), weatherConditionIconId: day.weather[0].icon, timeValue: day.dt_txt))
+                        weatherForecasts.append(ForecastCollectionViewModel(tempValue: Int(day.main.temp.rounded(.toNearestOrAwayFromZero)), weatherConditionIconId: day.weather[0].icon, timeValue: day.dt_txt, fullWeatherInformation: day))
                     }
                     self?.fiveDaysWeatherForecast.value = weatherForecasts
                 }

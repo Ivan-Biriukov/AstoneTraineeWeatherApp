@@ -119,7 +119,6 @@ class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        collection.isUserInteractionEnabled = false
         
         return collection
     }()
@@ -250,7 +249,13 @@ private extension ResultViewController {
 // MARK: - CollectionViewDelegate
 
 extension ResultViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let currentWeatherInfo = forecastDataArray[indexPath.row].fullWeatherInformation else {
+            return
+        }
+        print(currentWeatherInfo.dt_txt)
+    }
 }
 
 // MARK: - CollectionViewDataSource
@@ -269,7 +274,7 @@ extension ResultViewController: UICollectionViewDataSource {
         
         let currentCell = forecastDataArray[indexPath.row]
         cell.fill(viewModel: currentCell)
-        
+
         return cell
     }
 }
