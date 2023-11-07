@@ -1,6 +1,6 @@
 import UIKit
 
-class AppCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
@@ -26,8 +26,8 @@ class AppCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: true)
     }
  
-    func showResultVC() {
-        let vc = ResultViewController()
+    func showResultVC(with location: String) {
+        let vc = ResultViewController(locationName: location)
         vc.coordinator = self
         vc.viewModel = ResultViewModel()
         navigationController.modalPresentationStyle = .formSheet

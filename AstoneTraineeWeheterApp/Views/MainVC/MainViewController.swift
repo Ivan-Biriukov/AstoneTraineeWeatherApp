@@ -28,6 +28,7 @@ class MainViewController: BaseViewController {
             btn.addTarget(self, action: #selector(searchButtonTaped), for: .touchUpInside)
             return btn
         }()
+        
         let separateView: UIView = {
             let view = UIView()
             view.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -104,7 +105,6 @@ private extension MainViewController {
 private extension MainViewController {
     @objc func searchButtonTaped() {
         viewModel?.searchButtonPressed(with: searchField.text!)
-        bindViewModel()
     }
 }
 
@@ -115,6 +115,7 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         textField.resignFirstResponder()
+        viewModel?.searchButtonPressed(with: searchField.text!)
         
         return true
     }
@@ -125,11 +126,9 @@ extension MainViewController: UITextFieldDelegate {
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let current = recentsLocations[indexPath.row]
-        current.action()
-        coordinator?.showResultVC()
+        let searchedLocation = recentsLocations[indexPath.row].cityName
+        coordinator?.showResultVC(with: searchedLocation)
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource

@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class ResultForecastCollectionViewCell: UICollectionViewCell {
     
@@ -59,7 +60,9 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-
+        tempLabel.text = nil
+        weatherImage.image = nil
+        timeLabel.text = nil
     }
     
     // MARK: - Configure
@@ -80,6 +83,12 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         weatherImage.snp.makeConstraints { make in
             make.height.width.equalTo(45)
         }
-        
+    }
+    
+    func fill(viewModel: ForecastCollectionViewModel) {
+        tempLabel.text = "\(viewModel.tempValue)°"
+        weatherImage.kf.indicatorType = .activity
+        weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(viewModel.weatherConditionIconId)@2x.png"))
+        timeLabel.text = viewModel.timeValue
     }
 }

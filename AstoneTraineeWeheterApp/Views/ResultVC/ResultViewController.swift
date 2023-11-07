@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class ResultViewController: BaseViewController {
     
@@ -8,7 +9,9 @@ class ResultViewController: BaseViewController {
     var coordinator: AppCoordinator?
     var viewModel: ResultViewModel?
     
-    
+    private var locationName: String
+    private var forecastDataArray : [ForecastCollectionViewModel] = []
+        
     // MARK: - UI Elemetns
     
     private lazy var todayBubbleView: UIVisualEffectView = {
@@ -127,7 +130,23 @@ class ResultViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getInitialData(city: locationName)
+    }
+    
+    // MARK: - Init
+    
+    init(locationName: String) {
+        self.locationName = locationName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -239,7 +258,7 @@ extension ResultViewController: UICollectionViewDelegate {
 extension ResultViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        forecastDataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -248,7 +267,34 @@ extension ResultViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
+        let currentCell = forecastDataArray[indexPath.row]
+        cell.fill(viewModel: currentCell)
+        
         return cell
+    }
+}
 
+// MARK: - Bindings ViewModel
+
+private extension ResultViewController {
+    func bindViewModel() {
+        viewModel?.currentDayWeather.bind({ currentWeather in
+            DispatchQueue.main.async { [weak self] in
+                self?.locationTitleLabel.text = currentWeather.cityName
+                self?.currentTempLabel.text = "\(currentWeather.currentTemp)°"
+                self?.weatherImageView.kf.indicatorType = .activity
+                self?.weatherImageView.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(currentWeather.wetherConditionImageID)@2x.png"))
+               // self?.weatherConditionLabel.text = currentWeather.
+                self?.minTempLabel.text = "Min: \(currentWeather.nightTepm)°"
+                self?.maxTempLabel.text = "Max: \(currentWeather.dayTemp)°"
+            }
+        })
+        
+        viewModel?.fiveDaysWeatherForecast.bind({ forecastWeather in
+            DispatchQueue.main.async { [weak self] in
+                self?.forecastDataArray = forecastWeather
+                self?.forecastCollectionView.reloadData()
+            }
+        })
     }
 }

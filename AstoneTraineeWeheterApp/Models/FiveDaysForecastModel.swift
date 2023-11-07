@@ -21,36 +21,18 @@ struct List: Codable {
     let wind: Wind
     let visibility: Int // Average visibility, metres
     let pop: Double // Probability of precipitation, values between 0 = 0% and 1 = 100%
-    let rain: Rain?
     let sys: Sys // Part of the day (n - night, d - day)
-    let dtTxt: String // Time of data forecasted, ISO, UTC
+    let dt_txt: String // Time of data forecasted, ISO, UTC
 }
 
 struct MainClass: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, seaLevel, grndLevel, humidity: Int
-    let tempKf: Double
-}
-
-struct Rain: Codable {
-    let the3H: Double // Rain or Snow volume for last 3 hours, mm
+    let temp, feels_like, temp_min, temp_max: Double
+    let pressure, sea_level, grnd_level, humidity: Int
+    let temp_kf: Double
 }
 
 struct Clouds: Codable {
     let all: Int // Cloudiness, %
 }
 
-enum MainEnum {
-    case clear
-    case clouds
-    case rain
-}
 
-enum Description {
-    case brokenClouds
-    case clearSky
-    case fewClouds
-    case lightRain
-    case overcastClouds
-    case scatteredClouds
-}
