@@ -17,6 +17,8 @@
 		5795EA432AF92A7500B6EA3B /* ForecastCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5795EA422AF92A7500B6EA3B /* ForecastCollectionViewModel.swift */; };
 		5795EA462AF991FB00B6EA3B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5795EA452AF991FB00B6EA3B /* Kingfisher */; };
 		579619A62AFA65CA00971B9C /* ResultCurrentLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579619A52AFA65CA00971B9C /* ResultCurrentLocationModel.swift */; };
+		579619A82AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579619A72AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift */; };
+		579619AA2AFA95F800971B9C /* BaseAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579619A92AFA95F800971B9C /* BaseAlertView.swift */; };
 		579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E52AF6640B00EAD20E /* Coordinator.swift */; };
 		579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */; };
 		579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */; };
@@ -64,6 +66,8 @@
 		5795EA402AF921A400B6EA3B /* APIKeysList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeysList.plist; sourceTree = "<group>"; };
 		5795EA422AF92A7500B6EA3B /* ForecastCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCollectionViewModel.swift; sourceTree = "<group>"; };
 		579619A52AFA65CA00971B9C /* ResultCurrentLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCurrentLocationModel.swift; sourceTree = "<group>"; };
+		579619A72AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVCWeatherFullInformationModel.swift; sourceTree = "<group>"; };
+		579619A92AFA95F800971B9C /* BaseAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAlertView.swift; sourceTree = "<group>"; };
 		579BB5E52AF6640B00EAD20E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				5739C7BE2AF5908500B0834B /* BaseViewController.swift */,
+				579619A92AFA95F800971B9C /* BaseAlertView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				579619A52AFA65CA00971B9C /* ResultCurrentLocationModel.swift */,
+				579619A72AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift */,
 			);
 			path = ResultVCModels;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */,
 				57A960632AF81B2C00FCD537 /* ResultViewModel.swift in Sources */,
 				57A960862AF8228C00FCD537 /* ParameterEncoder.swift in Sources */,
+				579619A82AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift in Sources */,
 				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,
 				57A960942AF8235C00FCD537 /* Router.swift in Sources */,
 				57A9608A2AF822D100FCD537 /* JSONParameterEncoder.swift in Sources */,
@@ -490,6 +497,7 @@
 				579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */,
 				57A9605E2AF7B51C00FCD537 /* ResultViewController.swift in Sources */,
 				57A960922AF8234500FCD537 /* NetworkRouter.swift in Sources */,
+				579619AA2AFA95F800971B9C /* BaseAlertView.swift in Sources */,
 				57A9608E2AF8231400FCD537 /* HTTPMethod.swift in Sources */,
 				57A960962AF8239B00FCD537 /* NetworkManager.swift in Sources */,
 				5795EA432AF92A7500B6EA3B /* ForecastCollectionViewModel.swift in Sources */,

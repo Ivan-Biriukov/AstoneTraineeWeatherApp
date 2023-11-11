@@ -58,6 +58,38 @@ class ResultViewController: BaseViewController {
         return createStackView(for: minTempLabel, maxTempLabel, axis: .horizontal, spacing: 10, distribution: .fill, alignment: .center)
     }()
     
+    private let sunRiseIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.sunrise)
+        icon.contentMode = .scaleAspectFill
+        return icon
+    }()
+    
+    private lazy var sunriseLabel: UILabel = {
+        return createLabel(text: "12:12", font: .poppinsRegular(of: 20), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
+    }()
+    
+    private lazy var sunriseStack: UIStackView = {
+        return createStackView(for: sunRiseIcon, sunriseLabel, axis: .horizontal, spacing: 5, distribution: .fill, alignment: .center)
+    }()
+    
+    private let sunsetIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.sunset)
+        icon.contentMode = .scaleAspectFill
+        return icon
+    }()
+    
+    private lazy var sunsetLabel: UILabel = {
+        return createLabel(text: "18;00", font: .poppinsRegular(of: 20), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
+    }()
+    
+    private lazy var sunsetStack: UIStackView = {
+        return createStackView(for: sunsetIcon, sunsetLabel, axis: .horizontal, spacing: 5, distribution: .fill, alignment: .center)
+    }()
+    
+    private lazy var sunConditionStack: UIStackView = {
+        return createStackView(for: sunriseStack, sunsetStack, axis: .horizontal, spacing: 0, distribution: .equalSpacing, alignment: .center)
+    }()
+    
     private lazy var forecastLabel: UILabel = {
         return createLabel(text: "5-Days Forecasts", font: .poppinsBold(of: 25), textColor: .systemBackground, alignment: .left, numbersOfRows: 1)
     }()
@@ -119,7 +151,6 @@ class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        collection.isUserInteractionEnabled = false
         
         return collection
     }()
@@ -168,7 +199,7 @@ private extension ResultViewController {
     
     func addSubviews() {
         addSubviews(views: todayBubbleView, forecastLabel, forecstBubbleView)
-        [locationTitleLabel, currentWeatherConditionStack, weatherConditionLabel, minMaxTempStack].forEach({todayBubbleView.contentView.addSubview($0)})
+        [locationTitleLabel, currentWeatherConditionStack, weatherConditionLabel, minMaxTempStack, sunConditionStack].forEach({todayBubbleView.contentView.addSubview($0)})
         [forecastTitlesStack, underlineView, nextForecastsButton, pervousForecastButton, forecastCollectionView].forEach({forecstBubbleView.contentView.addSubview($0)})
     }
     
@@ -191,7 +222,7 @@ private extension ResultViewController {
         }
         
         weatherConditionLabel.snp.makeConstraints { make in
-            make.top.equalTo(currentWeatherConditionStack.snp.bottom).offset(10)
+            make.top.equalTo(currentWeatherConditionStack.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
         }
         
@@ -244,13 +275,28 @@ private extension ResultViewController {
             make.top.equalTo(underlineView.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
+        
+        sunConditionStack.snp.makeConstraints { make in
+            make.top.equalTo(minMaxTempStack.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        [sunRiseIcon, sunsetIcon].forEach({$0.snp.makeConstraints { make in
+            make.height.width.equalTo(50)
+        }})
     }
 }
 
 // MARK: - CollectionViewDelegate
 
 extension ResultViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let currentWeatherInfo = forecastDataArray[indexPath.row].fullWeatherInformation else {
+            return
+        }
+        BaseAlertView.shared.showFullWeatherAlert(with: currentWeatherInfo, on: self)
+    }
 }
 
 // MARK: - CollectionViewDataSource
@@ -269,7 +315,7 @@ extension ResultViewController: UICollectionViewDataSource {
         
         let currentCell = forecastDataArray[indexPath.row]
         cell.fill(viewModel: currentCell)
-        
+
         return cell
     }
 }
@@ -287,6 +333,8 @@ private extension ResultViewController {
                 self.weatherConditionLabel.text = currentWeather.weatherConditionName
                 self.minTempLabel.text = "Min: \(currentWeather.minTemp)°"
                 self.maxTempLabel.text = "Max: \(currentWeather.maxTemp)°"
+                self.sunriseLabel.text = currentWeather.sunrise
+                self.sunsetLabel.text = currentWeather.sunset
             }
         })
         

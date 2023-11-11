@@ -21,4 +21,42 @@ extension UIImage {
     struct Main {
 
     }
+    
+    struct Alert {
+        static var closeIcon: UIImage? {
+            return UIImage(named: "closeAlertIcon")
+        }
+        
+        static var predictTemp: UIImage? {
+            return UIImage(named: "predictionalTemp")
+        }
+        
+        static var feelsTemp: UIImage? {
+            return UIImage(named: "feelsLikeTemp")
+        }
+        
+        static var airPressure: UIImage? {
+            return UIImage(named: "pressure")
+        }
+        
+        static var humidity: UIImage? {
+            return UIImage(named: "humidity")
+        }
+        
+        static var windSpeed: UIImage? {
+            return UIImage(named: "windSpeed")
+        }
+        
+        static var windDirection: UIImage? {
+            return UIImage(named: "windDirection")
+        }
+        
+        static var sunrise: UIImage? {
+            return UIImage(named: "sunrise")
+        }
+        
+        static var sunset: UIImage? {
+            return UIImage(named: "sunset")
+        }
+    }
 }

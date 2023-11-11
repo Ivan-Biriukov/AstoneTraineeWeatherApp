@@ -1,5 +1,9 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
+
+// MARK: - Constants
 
 extension LaunchViewController {
     struct Constants {
@@ -22,9 +26,11 @@ extension LaunchViewController {
     }
 }
 
+// MARK: - LaunchViewController
+
 final class LaunchViewController: BaseViewController {
     
-    // MARK: - Propertyes
+    // MARK: - Properties
     
     private let constants: Constants
     var coordinator: AppCoordinator?
@@ -94,7 +100,7 @@ final class LaunchViewController: BaseViewController {
     }
 }
 
-// MARK: - Configure
+// MARK: - Private configure
 
 private extension LaunchViewController {
     

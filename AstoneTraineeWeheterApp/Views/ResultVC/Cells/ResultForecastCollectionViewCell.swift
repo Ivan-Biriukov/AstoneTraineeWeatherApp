@@ -1,8 +1,14 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 import Kingfisher
 
-class ResultForecastCollectionViewCell: UICollectionViewCell {
+// MARK: - ResultForecastCollectionViewCell
+
+final class ResultForecastCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
     
     static let identifier = "ResultForecastCollectionCell"
     
@@ -14,7 +20,6 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         lb.textColor = .black
         lb.textAlignment = .center
         lb.text = "19°"
-        
         return lb
     }()
     
@@ -22,9 +27,18 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         let weather = UIImageView()
         weather.image = UIImage(systemName: "cloud.rain")
         weather.tintColor = .blue
-        weather.contentMode = .scaleToFill
-        
+        weather.contentMode = .scaleAspectFill
         return weather
+    }()
+    
+    private lazy var dateLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 15)
+        lb.textColor = .black
+        lb.textAlignment = .center
+        lb.text = "15.00"
+        lb.numberOfLines = 0
+        return lb
     }()
     
     private lazy var timeLabel: UILabel = {
@@ -33,7 +47,7 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         lb.textColor = .black
         lb.textAlignment = .center
         lb.text = "15.00"
-        
+        lb.numberOfLines = 0
         return lb
     }()
     
@@ -42,11 +56,9 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.distribution = .equalSpacing
         stack.alignment = .center
-
         return stack
     }()
     
-
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -59,25 +71,27 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Prepare For Reuse
+    
     override func prepareForReuse() {
         tempLabel.text = nil
         weatherImage.image = nil
-        timeLabel.text = nil
+        dateLabel.text = nil
     }
     
     // MARK: - Configure
     
     private func addSubviews() {
         contentView.addSubview(contentStack)
-        [tempLabel, weatherImage, timeLabel].forEach({contentStack.addArrangedSubview($0)})
+        [tempLabel, weatherImage, dateLabel, timeLabel].forEach({contentStack.addArrangedSubview($0)})
     }
     
     private func configure() {
         contentStack.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.leading.equalTo(contentView.snp.leading).inset(5)
-            make.trailing.equalTo(contentView.snp.trailing).inset(5)
+            make.leading.equalTo(contentView.snp.leading)
+            make.trailing.equalTo(contentView.snp.trailing)
         }
         
         weatherImage.snp.makeConstraints { make in
@@ -89,6 +103,33 @@ class ResultForecastCollectionViewCell: UICollectionViewCell {
         tempLabel.text = "\(viewModel.tempValue)°"
         weatherImage.kf.indicatorType = .activity
         weatherImage.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(viewModel.weatherConditionIconId)@2x.png"))
-        timeLabel.text = viewModel.timeValue
+        dateLabel.text = transformUnixDateToMonthDayString(with: viewModel.fullWeatherInformation!.dt)
+        timeLabel.text = transformUnixDateToTimeString(with: viewModel.fullWeatherInformation!.dt)
+    }
+}
+
+// MARK: - Data transform Methods
+
+private extension ResultForecastCollectionViewCell {
+    func transformUnixDateToMonthDayString(with unixTimeStamp: Int) -> String {
+        let timestamp = unixTimeStamp
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "dd MMM"
+        let monthDayString = dateFormatter1.string(from: date)
+        
+        return monthDayString
+    }
+    
+    func transformUnixDateToTimeString(with unixTimeStamp: Int) -> String {
+        let timestamp = unixTimeStamp
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        
+        let dateFormatter2 = DateFormatter()
+        dateFormatter2.dateFormat = "HH:mm"
+        let timeString = dateFormatter2.string(from: date)
+        
+        return timeString
     }
 }
