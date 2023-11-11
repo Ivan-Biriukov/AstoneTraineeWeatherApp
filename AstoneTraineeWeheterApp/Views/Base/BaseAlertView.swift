@@ -221,12 +221,12 @@ final class BaseAlertView {
         [windDirectionIcon, windDirectionLabel].forEach({windDirectionStack.addArrangedSubview($0)})
         
         dateLabel.text = data.dt_txt
-        predictibleTempLabel.text = "Prediction temperature: \(data.main.temp.rounded(.toNearestOrAwayFromZero))°"
-        feelsLikeTempLabel.text = "Feels like: \(Int(data.main.feels_like))°"
+        predictibleTempLabel.text = "Prediction temperature: \(Int(data.main.temp.rounded(.toNearestOrAwayFromZero)))°"
+        feelsLikeTempLabel.text = "Feels like: \(Int(data.main.feels_like.rounded(.toNearestOrAwayFromZero)))°"
         pressureLabel.text = "Pressure: \(data.main.pressure) mm"
         humidityLabel.text = "Humidity: \(data.main.humidity) %"
         windSpeedLabel.text = "Wind speed: \(data.wind.speed) m/s."
-        windDirectionLabel.text = "Wind derection: \(data.wind.deg)"
+        windDirectionLabel.text = "Wind derection: \(windDirectionStringFromDegrees(data.wind.deg))"
         [predictionStack, feelsLikeStack, pressureStack, humidityStack, windSpeedStack, windDirectionStack].forEach({alertViewContentStack.addArrangedSubview($0)})
         
         [dateLabel, alertViewContentStack].forEach({alertView.addSubview($0)})
@@ -289,5 +289,28 @@ final class BaseAlertView {
                 })
             }
         })
+    }
+    
+   private func windDirectionStringFromDegrees(_ degrees: Int) -> String {
+        switch degrees {
+        case 0...22, 338...360:
+            return "North"
+        case 23...67:
+            return "North-East"
+        case 68...112:
+            return "Eastern"
+        case 113...157:
+            return "South-East"
+        case 158...202:
+            return "South"
+        case 203...247:
+            return "Southwest"
+        case 248...292:
+            return "West"
+        case 293...337:
+            return "North-West"
+        default:
+            return "Unknown direction"
+        }
     }
 }

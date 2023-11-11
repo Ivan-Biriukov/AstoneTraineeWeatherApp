@@ -7,4 +7,6 @@ struct ResultCurrentLocationModel {
     let wetherConditionImageID: String
     let currentTemp: Int
     let weatherConditionName: String
+    let sunrise: String
+    let sunset: String
 }

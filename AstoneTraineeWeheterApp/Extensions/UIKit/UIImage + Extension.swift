@@ -50,5 +50,13 @@ extension UIImage {
         static var windDirection: UIImage? {
             return UIImage(named: "windDirection")
         }
+        
+        static var sunrise: UIImage? {
+            return UIImage(named: "sunrise")
+        }
+        
+        static var sunset: UIImage? {
+            return UIImage(named: "sunset")
+        }
     }
 }
