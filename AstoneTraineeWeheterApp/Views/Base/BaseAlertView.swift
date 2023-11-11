@@ -1,5 +1,9 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
+
+// MARK: - BaseAlertView
 
 final class BaseAlertView {
     
@@ -32,7 +36,7 @@ final class BaseAlertView {
         return view
     }()
     
-    let dateLabel: UILabel = {
+   private let dateLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsSemiBold(of: 16)
         lb.textAlignment = .center
@@ -40,7 +44,13 @@ final class BaseAlertView {
         return lb
     }()
     
-    let predictibleTempLabel: UILabel = {
+    private let predictionTempIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.predictTemp)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+   private let predictibleTempLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsRegular(of: 14)
         lb.textAlignment = .center
@@ -48,7 +58,22 @@ final class BaseAlertView {
         return lb
     }()
     
-    let feelsLikeTempLabel: UILabel = {
+    private let predictionStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let feelsTempIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.feelsTemp)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+    private let feelsLikeTempLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsRegular(of: 14)
         lb.textAlignment = .center
@@ -56,7 +81,22 @@ final class BaseAlertView {
         return lb
     }()
     
-    let pressureLabel: UILabel = {
+    private let feelsLikeStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let pressureIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.airPressure)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+    private let pressureLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsRegular(of: 14)
         lb.textAlignment = .center
@@ -64,7 +104,22 @@ final class BaseAlertView {
         return lb
     }()
     
-    let humidityLabel: UILabel = {
+    private let pressureStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let humidityIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.humidity)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+    private let humidityLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsRegular(of: 14)
         lb.textAlignment = .center
@@ -72,7 +127,22 @@ final class BaseAlertView {
         return lb
     }()
     
-    let wind: UILabel = {
+    private let humidityStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let windSpeedIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.windSpeed)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+    private let windSpeedLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsRegular(of: 14)
         lb.textAlignment = .center
@@ -80,12 +150,44 @@ final class BaseAlertView {
         return lb
     }()
     
-    let labelsStak: UIStackView = {
+    private let windSpeedStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let windDirectionIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.windDirection)
+        icon.contentMode = .scaleToFill
+        return icon
+    }()
+    
+    private let windDirectionLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = .poppinsRegular(of: 14)
+        lb.textAlignment = .center
+        lb.textColor = .systemBackground
+        return lb
+    }()
+    
+    private let windDirectionStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 15
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private let alertViewContentStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
-        stack.alignment = .center
-        stack.spacing = 5
+        stack.alignment = .leading
+        stack.spacing = 10
         return stack
     }()
     
@@ -99,7 +201,6 @@ final class BaseAlertView {
         }
         
         targetViewController = vc
-        
         myTargetView = targetView
         
         backgroundView.frame = targetView.bounds
@@ -108,18 +209,36 @@ final class BaseAlertView {
         alertView.frame = CGRect(origin: CGPoint(x: 40, y: -300), size: CGSize(width: targetView.frame.width - 60, height: 300))
         targetView.addSubview(alertView)
         
+        [predictionTempIcon, feelsTempIcon, pressureIcon, humidityIcon, windSpeedIcon, windDirectionIcon].forEach({$0.snp.makeConstraints { make in
+            make.height.width.equalTo(30)
+        }})
+        
+        [predictionTempIcon, predictibleTempLabel].forEach({predictionStack.addArrangedSubview($0)})
+        [feelsTempIcon, feelsLikeTempLabel].forEach({feelsLikeStack.addArrangedSubview($0)})
+        [pressureIcon, pressureLabel].forEach({pressureStack.addArrangedSubview($0)})
+        [humidityIcon, humidityLabel].forEach({humidityStack.addArrangedSubview($0)})
+        [windSpeedIcon, windSpeedLabel].forEach({windSpeedStack.addArrangedSubview($0)})
+        [windDirectionIcon, windDirectionLabel].forEach({windDirectionStack.addArrangedSubview($0)})
+        
         dateLabel.text = data.dt_txt
         predictibleTempLabel.text = "Prediction temperature: \(data.main.temp.rounded(.toNearestOrAwayFromZero))°"
         feelsLikeTempLabel.text = "Feels like: \(Int(data.main.feels_like))°"
         pressureLabel.text = "Pressure: \(data.main.pressure) mm"
         humidityLabel.text = "Humidity: \(data.main.humidity) %"
-        wind.text = "Wind speed: \(data.wind.speed) m/s. Wind derection: \(data.wind.deg)"
-        [dateLabel, predictibleTempLabel, feelsLikeTempLabel, pressureLabel, humidityLabel, wind].forEach({labelsStak.addArrangedSubview($0)})
+        windSpeedLabel.text = "Wind speed: \(data.wind.speed) m/s."
+        windDirectionLabel.text = "Wind derection: \(data.wind.deg)"
+        [predictionStack, feelsLikeStack, pressureStack, humidityStack, windSpeedStack, windDirectionStack].forEach({alertViewContentStack.addArrangedSubview($0)})
         
-        alertView.addSubview(labelsStak)
+        [dateLabel, alertViewContentStack].forEach({alertView.addSubview($0)})
         
-        labelsStak.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview().inset(5)
+        dateLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().inset(10)
+        }
+        
+        alertViewContentStack.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(15)
         }
         
         let dismissButton: UIButton = {
