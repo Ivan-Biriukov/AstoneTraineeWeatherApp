@@ -1,4 +1,8 @@
-import UIKit.UIImage
+// MARK: - Imports
+
+import Foundation
+
+// MARK: - MainViewModel
 
 final class MainViewModel {
     
@@ -14,8 +18,9 @@ final class MainViewModel {
     }
 }
 
+// MARK: - Functionality Methods Extension
+
 private extension MainViewModel {
-    
     func getCurrentWeatherByName(for city: String) {
         weatherNetwork.fetchCurrentWeatherByCityName(cityName: city) { [weak self] result in
             switch result {

@@ -1,14 +1,17 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 import Kingfisher
 
-class ResultViewController: BaseViewController {
+// MARK: - ResultViewController
+
+final class ResultViewController: BaseViewController {
     
     // MARK: - Propertyes
     
     var coordinator: AppCoordinator?
     var viewModel: ResultViewModel?
-    
     private var locationName: String
     private var forecastDataArray : [ForecastCollectionViewModel] = []
         
@@ -19,7 +22,6 @@ class ResultViewController: BaseViewController {
         let blureView = UIVisualEffectView(effect: blureEffect)
         blureView.layer.cornerRadius = 25
         blureView.clipsToBounds = true
-        
         return blureView
     }()
     
@@ -99,7 +101,6 @@ class ResultViewController: BaseViewController {
         let blureView = UIVisualEffectView(effect: blureEffect)
         blureView.layer.cornerRadius = 25
         blureView.clipsToBounds = true
-        
         return blureView
     }()
     
@@ -127,7 +128,6 @@ class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.forward.circle"), for: .normal)
         btn.addTarget(self, action: #selector(nextForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemRed
-        
         return btn
     }()
     
@@ -136,7 +136,6 @@ class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.left.circle"), for: .normal)
         btn.addTarget(self, action: #selector(pervousForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemGray4
-        
         return btn
     }()
     
@@ -151,11 +150,10 @@ class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        
         return collection
     }()
     
-    // MARK: - LifeCycle Methods
+    // MARK: - Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,7 +191,7 @@ private extension ResultViewController {
     }
 }
 
-// MARK: - Configure
+// MARK: - Configure Methods
 
 private extension ResultViewController {
     

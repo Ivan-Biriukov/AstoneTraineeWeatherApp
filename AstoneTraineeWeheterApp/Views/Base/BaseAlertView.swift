@@ -191,11 +191,9 @@ final class BaseAlertView {
         return stack
     }()
     
-    
     // MARK: - Methods
     
     func showFullWeatherAlert(with data: List, on vc: UIViewController) {
-        
         guard let targetView = vc.view else {
             return
         }
@@ -269,7 +267,6 @@ final class BaseAlertView {
     }
     
     @objc func dismissButtonTaped() {
-        
         guard let targetView = myTargetView, let closeButton = myCloseButton else {
             return
         }

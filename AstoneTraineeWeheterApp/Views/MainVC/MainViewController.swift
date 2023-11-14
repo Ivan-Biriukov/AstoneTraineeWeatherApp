@@ -1,17 +1,20 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 
-class MainViewController: BaseViewController {
+// MARK: - MainViewController
+
+final class MainViewController: BaseViewController {
     
-    // MARK: - Propertyes
+    // MARK: - Properties
     
     var coordinator: AppCoordinator?
     var viewModel: MainViewModel?
-    
     private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
-    
+    //TODO: - Добавить маску запрещающую вводить пробелы и цифры
     private lazy var searchField: UITextField = {
         let field = UITextField()
         field.delegate = self
@@ -20,7 +23,7 @@ class MainViewController: BaseViewController {
         field.setLeftPaddingPoints(20)
         field.placeholder = "Search for weather at..."
         field.returnKeyType = .search
-        
+        //TODO: -Добавить переход после поиска или показ алерта
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -61,12 +64,13 @@ class MainViewController: BaseViewController {
         return collection
     }()
 
-    // MARK: - LifeCycle Methods
+    // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
+        //TODO: - Не работает метод скрывания клавиатуры
         hideKeyboardWhenTappedAround()
         bindViewModel()
     }
@@ -116,7 +120,6 @@ extension MainViewController: UITextFieldDelegate {
         textField.endEditing(true)
         textField.resignFirstResponder()
         viewModel?.searchButtonPressed(with: searchField.text!)
-        
         return true
     }
 }
@@ -147,7 +150,6 @@ extension MainViewController: UICollectionViewDataSource {
         
         let currentCell = recentsLocations[indexPath.row]
         cell.fill(viewModel: currentCell)
-        
         return cell
     }
 }

@@ -79,7 +79,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         temperatureLabel.text = nil
     }
         
-    // MARK: - Configure
+    // MARK: - Configure Methods
     
     private func configure() {
         contentView.backgroundColor = UIColor.init(white: 1, alpha: 0.5)

@@ -1,7 +1,13 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 
+// MARK: - BaseViewController
+
 class BaseViewController: UIViewController {
+    
+    // MARK: - UI Elements
     
     lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
@@ -9,11 +15,15 @@ class BaseViewController: UIViewController {
         image.clipsToBounds = true
         return image
     }()
+    
+    // MARK: - Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
     }
+    
+    // MARK: - Configure Methods
     
     private func addBackground() {
         view.addSubview(backgroundImageView)
