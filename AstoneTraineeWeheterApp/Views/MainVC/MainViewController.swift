@@ -1,17 +1,20 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 
-class MainViewController: BaseViewController {
+// MARK: - MainViewController
+
+final class MainViewController: BaseViewController {
     
-    // MARK: - Propertyes
+    // MARK: - Properties
     
     var coordinator: AppCoordinator?
     var viewModel: MainViewModel?
-    
     private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
-    
+    //TODO: - Добавить маску запрещающую вводить пробелы и цифры
     private lazy var searchField: UITextField = {
         let field = UITextField()
         field.delegate = self
@@ -20,7 +23,7 @@ class MainViewController: BaseViewController {
         field.setLeftPaddingPoints(20)
         field.placeholder = "Search for weather at..."
         field.returnKeyType = .search
-        
+        //TODO: -Добавить переход после поиска или показ алерта
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -28,6 +31,7 @@ class MainViewController: BaseViewController {
             btn.addTarget(self, action: #selector(searchButtonTaped), for: .touchUpInside)
             return btn
         }()
+        
         let separateView: UIView = {
             let view = UIView()
             view.widthAnchor.constraint(equalToConstant: 20).isActive = true
@@ -60,12 +64,13 @@ class MainViewController: BaseViewController {
         return collection
     }()
 
-    // MARK: - LifeCycle Methods
+    // MARK: - Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
+        //TODO: - Не работает метод скрывания клавиатуры
         hideKeyboardWhenTappedAround()
         bindViewModel()
     }
@@ -114,7 +119,7 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         textField.resignFirstResponder()
-        
+        viewModel?.searchButtonPressed(with: searchField.text!)
         return true
     }
 }
@@ -124,11 +129,9 @@ extension MainViewController: UITextFieldDelegate {
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let current = recentsLocations[indexPath.row]
-        current.action()
-        coordinator?.showResultVC()
+        let searchedLocation = recentsLocations[indexPath.row].cityName
+        coordinator?.showResultVC(with: searchedLocation)
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -147,7 +150,6 @@ extension MainViewController: UICollectionViewDataSource {
         
         let currentCell = recentsLocations[indexPath.row]
         cell.fill(viewModel: currentCell)
-        
         return cell
     }
 }
@@ -157,7 +159,7 @@ extension MainViewController: UICollectionViewDataSource {
 private extension MainViewController {
     
     func bindViewModel() {
-        viewModel?.currentSearch.bind({ searchResult in
+        viewModel?.currentDayWeather.bind({ searchResult in
             self.recentsLocations.append(searchResult)
             DispatchQueue.main.async {
                 self.searchResultsCollectionView.reloadData()

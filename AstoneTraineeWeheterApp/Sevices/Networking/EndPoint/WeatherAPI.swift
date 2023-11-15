@@ -1,5 +1,4 @@
 import Foundation
-//import CryptoKit
 
 enum NetworkEnvironment {
     case WeatherV2point5
@@ -56,26 +55,21 @@ extension WeatherAPI: EndPointType {
     
     var path: String {
         switch self {
-        case .getWeatherByCityName:
+        case .getWeatherByCityName,
+                .getWeatherByLonLat:
             return "weather"
-        case .getWeatherByLonLat:
-            return "weather"
-        case .getFiveDayForecastByLonLat:
-            return "forecast"
-        case .getFiveDaysForecastByCityName:
+        case .getFiveDayForecastByLonLat,
+                .getFiveDaysForecastByCityName:
             return "forecast"
         }
     }
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .getWeatherByCityName:
-            return .get
-        case .getWeatherByLonLat:
-            return .get
-        case .getFiveDayForecastByLonLat:
-            return .get
-        case .getFiveDaysForecastByCityName:
+        case .getWeatherByCityName,
+                .getWeatherByLonLat,
+                .getFiveDayForecastByLonLat,
+                .getFiveDaysForecastByCityName:
             return .get
         }
     }

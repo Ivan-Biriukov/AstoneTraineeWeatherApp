@@ -1,14 +1,20 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
+import Kingfisher
 
-class ResultViewController: BaseViewController {
+// MARK: - ResultViewController
+
+final class ResultViewController: BaseViewController {
     
     // MARK: - Propertyes
     
     var coordinator: AppCoordinator?
     var viewModel: ResultViewModel?
-    
-    
+    private var locationName: String
+    private var forecastDataArray : [ForecastCollectionViewModel] = []
+        
     // MARK: - UI Elemetns
     
     private lazy var todayBubbleView: UIVisualEffectView = {
@@ -16,7 +22,6 @@ class ResultViewController: BaseViewController {
         let blureView = UIVisualEffectView(effect: blureEffect)
         blureView.layer.cornerRadius = 25
         blureView.clipsToBounds = true
-        
         return blureView
     }()
     
@@ -55,6 +60,38 @@ class ResultViewController: BaseViewController {
         return createStackView(for: minTempLabel, maxTempLabel, axis: .horizontal, spacing: 10, distribution: .fill, alignment: .center)
     }()
     
+    private let sunRiseIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.sunrise)
+        icon.contentMode = .scaleAspectFill
+        return icon
+    }()
+    
+    private lazy var sunriseLabel: UILabel = {
+        return createLabel(text: "12:12", font: .poppinsRegular(of: 20), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
+    }()
+    
+    private lazy var sunriseStack: UIStackView = {
+        return createStackView(for: sunRiseIcon, sunriseLabel, axis: .horizontal, spacing: 5, distribution: .fill, alignment: .center)
+    }()
+    
+    private let sunsetIcon: UIImageView = {
+        let icon = UIImageView(image: .Alert.sunset)
+        icon.contentMode = .scaleAspectFill
+        return icon
+    }()
+    
+    private lazy var sunsetLabel: UILabel = {
+        return createLabel(text: "18;00", font: .poppinsRegular(of: 20), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
+    }()
+    
+    private lazy var sunsetStack: UIStackView = {
+        return createStackView(for: sunsetIcon, sunsetLabel, axis: .horizontal, spacing: 5, distribution: .fill, alignment: .center)
+    }()
+    
+    private lazy var sunConditionStack: UIStackView = {
+        return createStackView(for: sunriseStack, sunsetStack, axis: .horizontal, spacing: 0, distribution: .equalSpacing, alignment: .center)
+    }()
+    
     private lazy var forecastLabel: UILabel = {
         return createLabel(text: "5-Days Forecasts", font: .poppinsBold(of: 25), textColor: .systemBackground, alignment: .left, numbersOfRows: 1)
     }()
@@ -64,7 +101,6 @@ class ResultViewController: BaseViewController {
         let blureView = UIVisualEffectView(effect: blureEffect)
         blureView.layer.cornerRadius = 25
         blureView.clipsToBounds = true
-        
         return blureView
     }()
     
@@ -92,7 +128,6 @@ class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.forward.circle"), for: .normal)
         btn.addTarget(self, action: #selector(nextForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemRed
-        
         return btn
     }()
     
@@ -101,7 +136,6 @@ class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.left.circle"), for: .normal)
         btn.addTarget(self, action: #selector(pervousForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemGray4
-        
         return btn
     }()
     
@@ -116,18 +150,32 @@ class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        collection.isUserInteractionEnabled = false
-        
         return collection
     }()
     
-    // MARK: - LifeCycle Methods
+    // MARK: - Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.getInitialData(city: locationName)
+    }
+    
+    // MARK: - Init
+    
+    init(locationName: String) {
+        self.locationName = locationName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -143,13 +191,13 @@ private extension ResultViewController {
     }
 }
 
-// MARK: - Configure
+// MARK: - Configure Methods
 
 private extension ResultViewController {
     
     func addSubviews() {
         addSubviews(views: todayBubbleView, forecastLabel, forecstBubbleView)
-        [locationTitleLabel, currentWeatherConditionStack, weatherConditionLabel, minMaxTempStack].forEach({todayBubbleView.contentView.addSubview($0)})
+        [locationTitleLabel, currentWeatherConditionStack, weatherConditionLabel, minMaxTempStack, sunConditionStack].forEach({todayBubbleView.contentView.addSubview($0)})
         [forecastTitlesStack, underlineView, nextForecastsButton, pervousForecastButton, forecastCollectionView].forEach({forecstBubbleView.contentView.addSubview($0)})
     }
     
@@ -172,7 +220,7 @@ private extension ResultViewController {
         }
         
         weatherConditionLabel.snp.makeConstraints { make in
-            make.top.equalTo(currentWeatherConditionStack.snp.bottom).offset(10)
+            make.top.equalTo(currentWeatherConditionStack.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
         }
         
@@ -225,13 +273,28 @@ private extension ResultViewController {
             make.top.equalTo(underlineView.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
+        
+        sunConditionStack.snp.makeConstraints { make in
+            make.top.equalTo(minMaxTempStack.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        [sunRiseIcon, sunsetIcon].forEach({$0.snp.makeConstraints { make in
+            make.height.width.equalTo(50)
+        }})
     }
 }
 
 // MARK: - CollectionViewDelegate
 
 extension ResultViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let currentWeatherInfo = forecastDataArray[indexPath.row].fullWeatherInformation else {
+            return
+        }
+        BaseAlertView.shared.showFullWeatherAlert(with: currentWeatherInfo, on: self)
+    }
 }
 
 // MARK: - CollectionViewDataSource
@@ -239,7 +302,7 @@ extension ResultViewController: UICollectionViewDelegate {
 extension ResultViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        forecastDataArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -248,7 +311,36 @@ extension ResultViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        return cell
+        let currentCell = forecastDataArray[indexPath.row]
+        cell.fill(viewModel: currentCell)
 
+        return cell
+    }
+}
+
+// MARK: - Bindings ViewModel
+
+private extension ResultViewController {
+    func bindViewModel() {
+        viewModel?.currentDayWeather.bind({ currentWeather in
+            DispatchQueue.main.async { [unowned self] in
+                self.locationTitleLabel.text = currentWeather.cityName
+                self.currentTempLabel.text = "\(currentWeather.currentTemp)°"
+                self.weatherImageView.kf.indicatorType = .activity
+                self.weatherImageView.kf.setImage(with: URL(string: "https://openweathermap.org/img/wn/\(currentWeather.wetherConditionImageID)@2x.png"))
+                self.weatherConditionLabel.text = currentWeather.weatherConditionName
+                self.minTempLabel.text = "Min: \(currentWeather.minTemp)°"
+                self.maxTempLabel.text = "Max: \(currentWeather.maxTemp)°"
+                self.sunriseLabel.text = currentWeather.sunrise
+                self.sunsetLabel.text = currentWeather.sunset
+            }
+        })
+        
+        viewModel?.fiveDaysWeatherForecast.bind({ forecastWeather in
+            DispatchQueue.main.async { [unowned self] in
+                self.forecastDataArray = forecastWeather
+                self.forecastCollectionView.reloadData()
+            }
+        })
     }
 }

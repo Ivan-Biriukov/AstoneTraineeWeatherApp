@@ -1,5 +1,9 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
+
+// MARK: - Constants
 
 extension LaunchViewController {
     struct Constants {
@@ -22,9 +26,11 @@ extension LaunchViewController {
     }
 }
 
+// MARK: - LaunchViewController
+
 final class LaunchViewController: BaseViewController {
     
-    // MARK: - Propertyes
+    // MARK: - Properties
     
     private let constants: Constants
     var coordinator: AppCoordinator?
@@ -75,7 +81,7 @@ final class LaunchViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - LifeCYcle Methods
+    // MARK: - Life Cycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +100,7 @@ final class LaunchViewController: BaseViewController {
     }
 }
 
-// MARK: - Configure
+// MARK: - Private configure
 
 private extension LaunchViewController {
     
