@@ -14,7 +14,6 @@ final class MainViewController: BaseViewController {
     private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
-    //TODO: - Добавить маску запрещающую вводить пробелы и цифры
     private lazy var searchField: UITextField = {
         let field = UITextField()
         field.delegate = self
@@ -23,6 +22,8 @@ final class MainViewController: BaseViewController {
         field.setLeftPaddingPoints(20)
         field.placeholder = "Search for weather at..."
         field.returnKeyType = .search
+        field.keyboardType = .alphabet
+        field.autocorrectionType = .no
         //TODO: -Добавить переход после поиска или показ алерта
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
@@ -120,6 +121,16 @@ extension MainViewController: UITextFieldDelegate {
         textField.endEditing(true)
         textField.resignFirstResponder()
         viewModel?.searchButtonPressed(with: searchField.text!)
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == searchField {
+            let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ")
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        
         return true
     }
 }
