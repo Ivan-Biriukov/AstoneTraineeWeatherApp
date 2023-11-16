@@ -198,7 +198,7 @@ extension MainViewController: MainViewModelDelegate {
     
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
-            let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Try change search request text, and try again!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Please, change search request and try aghain!", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Got It!", style: .default, handler: nil)
             alertController.addAction(okAction)
             self?.present(alertController, animated: true, completion: nil)
