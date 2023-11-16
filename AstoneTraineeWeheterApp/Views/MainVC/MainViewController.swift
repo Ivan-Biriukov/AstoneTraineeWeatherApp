@@ -25,7 +25,6 @@ final class MainViewController: BaseViewController {
         field.keyboardType = .alphabet
         field.autocorrectionType = .no
         //TODO: -Добавить переход после поиска
-        //TODO: - Убрать автоматическую постановку точки после двух пробелов
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -73,9 +72,12 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-        //TODO: - Не работает метод скрывания клавиатуры
-        hideKeyboardWhenTappedAround()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideKeyboardWhenTappedAround()
     }
 }
 
