@@ -43,6 +43,7 @@ final class MainViewController: BaseViewController {
         field.rightView = createStackView(for: searchButton, separateView, axis: .horizontal, spacing: 0, distribution: .fill, alignment: .center)
         field.rightViewMode = .always
         field.clearButtonMode = .never
+        field.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
         
         return field
     }()
@@ -106,13 +107,17 @@ private extension MainViewController {
     }
 }
 
-// MARK: - Buttons Methods
+// MARK: - Methods
 
 private extension MainViewController {
     @objc func searchButtonTaped() {
         viewModel?.delegate = self
         viewModel?.searchButtonPressed(with: searchField.text!)
-        
+    }
+    
+    @objc func didChangeText(_ sender: UITextField) {
+        let textWithoutDot = sender.text?.replacingOccurrences(of: ".", with: " ", options: .literal, range: nil)
+        sender.text = textWithoutDot
     }
 }
 
@@ -133,7 +138,6 @@ extension MainViewController: UITextFieldDelegate {
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
         }
-        
         return true
     }
 }
