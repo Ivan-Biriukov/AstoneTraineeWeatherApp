@@ -24,7 +24,6 @@ final class MainViewController: BaseViewController {
         field.returnKeyType = .search
         field.keyboardType = .alphabet
         field.autocorrectionType = .no
-        //TODO: -Добавить переход после поиска
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -108,8 +107,9 @@ private extension MainViewController {
 }
 
 // MARK: - Methods
-
+//TODO: -Добавить переход после поиска
 private extension MainViewController {
+    
     @objc func searchButtonTaped() {
         makeWeatherSearchRequest()
     }
@@ -174,7 +174,6 @@ extension MainViewController: UICollectionViewDataSource {
 // MARK: - ViewModel Bindings
 
 private extension MainViewController {
-    
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
             self.recentsLocations.append(searchResult)
@@ -188,6 +187,7 @@ private extension MainViewController {
 // MARK: - MainViewModelDelegate
 
 extension MainViewController: MainViewModelDelegate {
+
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
             let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Try change search request text, and try again!", preferredStyle: .alert)
