@@ -177,8 +177,16 @@ private extension MainViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
             self.recentsLocations.append(searchResult)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.searchResultsCollectionView.reloadData()
+            }
+        })
+        
+        viewModel?.isPosibleToNavigate.bind({ posible in
+            if posible {
+                DispatchQueue.main.async { [unowned self] in
+                    self.coordinator?.showResultVC(with: self.searchField.text!)
+                }
             }
         })
     }
@@ -187,7 +195,7 @@ private extension MainViewController {
 // MARK: - MainViewModelDelegate
 
 extension MainViewController: MainViewModelDelegate {
-
+    
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
             let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Try change search request text, and try again!", preferredStyle: .alert)
