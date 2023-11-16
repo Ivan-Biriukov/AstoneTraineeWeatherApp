@@ -43,7 +43,6 @@ final class MainViewController: BaseViewController {
         field.rightViewMode = .always
         field.clearButtonMode = .never
         field.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
-        
         return field
     }()
     
@@ -62,7 +61,6 @@ final class MainViewController: BaseViewController {
         collection.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        
         return collection
     }()
 
@@ -73,11 +71,6 @@ final class MainViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         bindViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        hideKeyboardWhenTappedAround()
     }
 }
 
@@ -107,14 +100,18 @@ private extension MainViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    func makeWeatherSearchRequest() {
+        viewModel?.delegate = self
+        viewModel?.searchButtonPressed(with: searchField.text!)
+    }
 }
 
 // MARK: - Methods
 
 private extension MainViewController {
     @objc func searchButtonTaped() {
-        viewModel?.delegate = self
-        viewModel?.searchButtonPressed(with: searchField.text!)
+        makeWeatherSearchRequest()
     }
     
     @objc func didChangeText(_ sender: UITextField) {
@@ -130,7 +127,7 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         textField.resignFirstResponder()
-        viewModel?.searchButtonPressed(with: searchField.text!)
+        makeWeatherSearchRequest()
         return true
     }
     

@@ -21,13 +21,13 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
+        hideKeyboardWhenTappedAround()
     }
     
     // MARK: - Configure Methods
     
     private func addBackground() {
         view.addSubview(backgroundImageView)
-        
         backgroundImageView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -75,4 +75,16 @@ class BaseViewController: UIViewController {
         button.titleLabel?.font = font
         return button
     }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: - Methods
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
+    }
 }
+
