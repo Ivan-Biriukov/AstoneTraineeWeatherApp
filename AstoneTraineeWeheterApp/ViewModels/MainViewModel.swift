@@ -2,6 +2,12 @@
 
 import Foundation
 
+// MARK: - MainViewModelDelegate
+
+protocol MainViewModelDelegate: AnyObject {
+    func showErrorAlert(_ message: String)
+}
+
 // MARK: - MainViewModel
 
 final class MainViewModel {
@@ -10,6 +16,8 @@ final class MainViewModel {
     
     let weatherNetwork : NetworkManagerProtocol = NetworkManager()
     var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
+    
+    weak var delegate: MainViewModelDelegate?
     
     // MARK: - Methods
     
@@ -41,10 +49,10 @@ private extension MainViewModel {
                         self?.currentDayWeather.value = SearchCellViewModel(cityName: weather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
                     }
                     catch {
-                        print(error.localizedDescription)
+                        self?.delegate?.showErrorAlert(error.localizedDescription)
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self?.delegate?.showErrorAlert(error.localizedDescription)
                 }
             }
         }

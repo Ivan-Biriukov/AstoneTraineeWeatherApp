@@ -24,7 +24,8 @@ final class MainViewController: BaseViewController {
         field.returnKeyType = .search
         field.keyboardType = .alphabet
         field.autocorrectionType = .no
-        //TODO: -Добавить переход после поиска или показ алерта
+        //TODO: -Добавить переход после поиска
+        //TODO: - Убрать автоматическую постановку точки после двух пробелов
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -109,7 +110,9 @@ private extension MainViewController {
 
 private extension MainViewController {
     @objc func searchButtonTaped() {
+        viewModel?.delegate = self
         viewModel?.searchButtonPressed(with: searchField.text!)
+        
     }
 }
 
@@ -176,5 +179,18 @@ private extension MainViewController {
                 self.searchResultsCollectionView.reloadData()
             }
         })
+    }
+}
+
+// MARK: - MainViewModelDelegate
+
+extension MainViewController: MainViewModelDelegate {
+    func showErrorAlert(_ message: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Try change search request text, and try again!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Got It!", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
 }
