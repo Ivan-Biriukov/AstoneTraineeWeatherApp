@@ -53,6 +53,7 @@
 		57A9609F2AF8544C00FCD537 /* CurrentWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */; };
 		57AF22802B08201200164700 /* ImagesNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF227F2B08201200164700 /* ImagesNetworkManager.swift */; };
 		57AF22822B08207F00164700 /* ImagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF22812B08207F00164700 /* ImagesAPI.swift */; };
+		57AF22842B0828ED00164700 /* ImagesSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF22832B0828ED00164700 /* ImagesSearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherModel.swift; sourceTree = "<group>"; };
 		57AF227F2B08201200164700 /* ImagesNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesNetworkManager.swift; sourceTree = "<group>"; };
 		57AF22812B08207F00164700 /* ImagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesAPI.swift; sourceTree = "<group>"; };
+		57AF22832B0828ED00164700 /* ImagesSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSearchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 			children = (
 				57A9609E2AF8544C00FCD537 /* CurrentWeatherModel.swift */,
 				5795EA3E2AF9188400B6EA3B /* FiveDaysForecastModel.swift */,
+				57AF22832B0828ED00164700 /* ImagesSearchModel.swift */,
 			);
 			path = "Decoding Models";
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57A960632AF81B2C00FCD537 /* ResultViewModel.swift in Sources */,
+				57AF22842B0828ED00164700 /* ImagesSearchModel.swift in Sources */,
 				57A960862AF8228C00FCD537 /* ParameterEncoder.swift in Sources */,
 				579619A82AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift in Sources */,
 				579DE3D12AF5ACE00036078E /* UIColor + Extension.swift in Sources */,

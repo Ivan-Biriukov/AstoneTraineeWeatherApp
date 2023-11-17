@@ -370,5 +370,12 @@ private extension ResultViewController {
                 self.forecastCollectionView.reloadData()
             }
         })
+        
+        viewModel?.cityImageURLString.bind({ cityImageString in
+            DispatchQueue.main.async { [unowned self] in
+                self.backgroundImageView.kf.indicatorType = .activity
+                self.backgroundImageView.kf.setImage(with: URL(string: cityImageString))
+            }
+        })
     }
 }

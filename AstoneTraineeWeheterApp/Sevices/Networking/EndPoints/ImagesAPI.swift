@@ -80,7 +80,3 @@ extension ImagesAPI: EndPointType {
         ]
     }
 }
-
-
-//Key: 75GJGPAYJRNUG25FH4LK
-//Secret: GLQE8eyrL3^$sxJd7Y6mXb7MJgUKKmN2JhSfcV39

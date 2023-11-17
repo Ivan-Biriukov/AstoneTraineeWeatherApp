@@ -8,15 +8,19 @@ final class ResultViewModel {
     
     // MARK: - Propertyes
     
-    let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
+    let weatherNetwork: WeatherNetworkManagerProtocol = WeatherNetworkManager()
     var currentDayWeather = Dynamic(ResultCurrentLocationModel(cityName: "", minTemp: 0, maxTemp: 0, wetherConditionImageID: "", currentTemp: 0, weatherConditionName: "", sunrise: "", sunset: ""))
     var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String(), fullWeatherInformation: nil)])
+    
+    let imagesNetwork: ImagesNetworkManagerProtocol = ImagesNetworkManager()
+    var cityImageURLString = Dynamic("")
     
     // MARK: - Methods
     
     func getInitialData(city: String) {
         fetchCurrentWeatherByName(cityName: city)
         getForecastWeatherByName(for: city)
+        fetchLocationImage(for: city)
     }
 }
 
@@ -81,5 +85,22 @@ private extension ResultViewModel {
         let timeString = dateFormatter2.string(from: date)
         
         return timeString
+    }
+    
+    func fetchLocationImage(for city: String) {
+        imagesNetwork.fetchRandomImage(q: city) { [weak self] result in
+            switch result {
+            case .success(let data):
+                do {
+                    let imagesURLString = try JSONDecoder().decode(ImagesSearchModel.self, from: data)
+                    self?.cityImageURLString.value = (imagesURLString.results.randomElement()?.urls.full)!
+                }
+                catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
