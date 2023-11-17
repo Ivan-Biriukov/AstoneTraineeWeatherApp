@@ -3,6 +3,12 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+// MARK: - ScrolDirection
+fileprivate enum ScrolDirection {
+    case forward
+    case backward
+}
+
 // MARK: - ResultViewController
 final class ResultViewController: BaseViewController {
     
@@ -148,6 +154,7 @@ final class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
+        collection.isScrollEnabled = false
         return collection
     }()
     
@@ -364,10 +371,4 @@ private extension ResultViewController {
             }
         })
     }
-}
-
-// MARK: - ScrolDirection
-fileprivate enum ScrolDirection {
-    case forward
-    case backward
 }
