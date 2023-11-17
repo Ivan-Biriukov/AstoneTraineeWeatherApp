@@ -1,22 +1,25 @@
 // MARK: - Imports
-
 import UIKit
 import SnapKit
 import Kingfisher
 
-// MARK: - ResultViewController
+// MARK: - ScrolDirection
+fileprivate enum ScrolDirection {
+    case forward
+    case backward
+}
 
+// MARK: - ResultViewController
 final class ResultViewController: BaseViewController {
     
     // MARK: - Propertyes
-    
     var coordinator: AppCoordinator?
     var viewModel: ResultViewModel?
     private var locationName: String
     private var forecastDataArray : [ForecastCollectionViewModel] = []
+    private var lastVisibleCollectionItemNumber: Int = 3
         
     // MARK: - UI Elemetns
-    
     private lazy var todayBubbleView: UIVisualEffectView = {
         let blureEffect = UIBlurEffect(style: .light)
         let blureView = UIVisualEffectView(effect: blureEffect)
@@ -136,6 +139,7 @@ final class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.left.circle"), for: .normal)
         btn.addTarget(self, action: #selector(pervousForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemGray4
+        btn.alpha = 0
         return btn
     }()
     
@@ -150,11 +154,11 @@ final class ResultViewController: BaseViewController {
         collection.register(ResultForecastCollectionViewCell.self, forCellWithReuseIdentifier: ResultForecastCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
+        collection.isScrollEnabled = false
         return collection
     }()
     
     // MARK: - Life Cycle Methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
@@ -168,7 +172,6 @@ final class ResultViewController: BaseViewController {
     }
     
     // MARK: - Init
-    
     init(locationName: String) {
         self.locationName = locationName
         super.init(nibName: nil, bundle: nil)
@@ -180,19 +183,17 @@ final class ResultViewController: BaseViewController {
 }
 
 // MARK: - Buttons Methods
-
 private extension ResultViewController {
     @objc func nextForecastTaped() {
-        
+        scrollCollection(direction: .forward)
     }
     
     @objc func pervousForecastTaped() {
-        
+        scrollCollection(direction: .backward)
     }
 }
 
 // MARK: - Configure Methods
-
 private extension ResultViewController {
     
     func addSubviews() {
@@ -283,22 +284,50 @@ private extension ResultViewController {
             make.height.width.equalTo(50)
         }})
     }
+    
+    func scrollCollection(direction: ScrolDirection) {
+        let indexPath = NSIndexPath(row: lastVisibleCollectionItemNumber, section: 0)
+        
+        switch direction {
+        case .forward:
+            if lastVisibleCollectionItemNumber < forecastDataArray.count - 1 {
+                lastVisibleCollectionItemNumber += 1
+                
+                forecastCollectionView.scrollToItem(at: indexPath as IndexPath, at: .left, animated: true)
+                self.pervousForecastButton.alpha = 1
+            }
+            if lastVisibleCollectionItemNumber >= forecastDataArray.count - 4 {
+                self.nextForecastsButton.alpha = 0
+            }
+        case .backward:
+            if nextForecastsButton.alpha != 1 {
+                nextForecastsButton.alpha = 1
+            }
+            if lastVisibleCollectionItemNumber > 4 {
+                lastVisibleCollectionItemNumber -= 1
+                forecastCollectionView.scrollToItem(at: indexPath as IndexPath, at: .right, animated: true)
+            } else if lastVisibleCollectionItemNumber == 4 {
+                lastVisibleCollectionItemNumber = 3
+                forecastCollectionView.scrollToItem(at: NSIndexPath(row: 0, section: 0) as IndexPath, at: .right, animated: true)
+                pervousForecastButton.alpha = 0
+            }
+        }
+    }
 }
 
 // MARK: - CollectionViewDelegate
-
 extension ResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let currentWeatherInfo = forecastDataArray[indexPath.row].fullWeatherInformation else {
             return
         }
+        
         BaseAlertView.shared.showFullWeatherAlert(with: currentWeatherInfo, on: self)
     }
 }
 
 // MARK: - CollectionViewDataSource
-
 extension ResultViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -319,7 +348,6 @@ extension ResultViewController: UICollectionViewDataSource {
 }
 
 // MARK: - Bindings ViewModel
-
 private extension ResultViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ currentWeather in

@@ -14,7 +14,6 @@ final class MainViewController: BaseViewController {
     private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
-    //TODO: - Добавить маску запрещающую вводить пробелы и цифры
     private lazy var searchField: UITextField = {
         let field = UITextField()
         field.delegate = self
@@ -23,7 +22,8 @@ final class MainViewController: BaseViewController {
         field.setLeftPaddingPoints(20)
         field.placeholder = "Search for weather at..."
         field.returnKeyType = .search
-        //TODO: -Добавить переход после поиска или показ алерта
+        field.keyboardType = .alphabet
+        field.autocorrectionType = .no
         let searchButton: UIButton = {
             let btn = UIButton(type: .system)
             btn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -41,7 +41,7 @@ final class MainViewController: BaseViewController {
         field.rightView = createStackView(for: searchButton, separateView, axis: .horizontal, spacing: 0, distribution: .fill, alignment: .center)
         field.rightViewMode = .always
         field.clearButtonMode = .never
-        
+        field.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
         return field
     }()
     
@@ -60,7 +60,6 @@ final class MainViewController: BaseViewController {
         collection.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.showsHorizontalScrollIndicator = false
-        
         return collection
     }()
 
@@ -70,8 +69,6 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-        //TODO: - Не работает метод скрывания клавиатуры
-        hideKeyboardWhenTappedAround()
         bindViewModel()
     }
 }
@@ -102,13 +99,24 @@ private extension MainViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
+    
+    func makeWeatherSearchRequest() {
+        viewModel?.delegate = self
+        viewModel?.searchButtonPressed(with: searchField.text!)
+    }
 }
 
-// MARK: - Buttons Methods
-
+// MARK: - Methods
+//TODO: -Добавить переход после поиска
 private extension MainViewController {
+    
     @objc func searchButtonTaped() {
-        viewModel?.searchButtonPressed(with: searchField.text!)
+        makeWeatherSearchRequest()
+    }
+    
+    @objc func didChangeText(_ sender: UITextField) {
+        let textWithoutDot = sender.text?.replacingOccurrences(of: ".", with: " ", options: .literal, range: nil)
+        sender.text = textWithoutDot
     }
 }
 
@@ -119,7 +127,16 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         textField.resignFirstResponder()
-        viewModel?.searchButtonPressed(with: searchField.text!)
+        makeWeatherSearchRequest()
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == searchField {
+            let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ")
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
         return true
     }
 }
@@ -157,13 +174,34 @@ extension MainViewController: UICollectionViewDataSource {
 // MARK: - ViewModel Bindings
 
 private extension MainViewController {
-    
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
             self.recentsLocations.append(searchResult)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.searchResultsCollectionView.reloadData()
             }
         })
+        
+        viewModel?.isPosibleToNavigate.bind({ posible in
+            if posible {
+                DispatchQueue.main.async { [unowned self] in
+                    self.coordinator?.showResultVC(with: self.searchField.text!)
+                }
+            }
+        })
+    }
+}
+
+// MARK: - MainViewModelDelegate
+
+extension MainViewController: MainViewModelDelegate {
+    
+    func showErrorAlert(_ message: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Please, change search request and try aghain!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Got It!", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            self?.present(alertController, animated: true, completion: nil)
+        }
     }
 }

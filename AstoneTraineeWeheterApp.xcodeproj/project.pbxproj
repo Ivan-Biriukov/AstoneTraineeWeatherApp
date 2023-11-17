@@ -22,7 +22,6 @@
 		579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E52AF6640B00EAD20E /* Coordinator.swift */; };
 		579BB5E82AF6642B00EAD20E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */; };
 		579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */; };
-		579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */; };
 		579BB5EF2AF6B6CA00EAD20E /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */; };
 		579BB5F22AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */; };
 		579BB5F42AF703D800EAD20E /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */; };
@@ -71,7 +70,6 @@
 		579BB5E52AF6640B00EAD20E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		579BB5E72AF6642B00EAD20E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		579BB5EA2AF6ABBE00EAD20E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		579BB5F12AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		579BB5F32AF703D800EAD20E /* SearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellViewModel.swift; sourceTree = "<group>"; };
@@ -376,7 +374,6 @@
 				579DE3CE2AF5AAB50036078E /* UIFont + Extension.swift */,
 				579DE3D02AF5ACE00036078E /* UIColor + Extension.swift */,
 				579DE3D22AF5AD560036078E /* UIImage + Extension.swift */,
-				579BB5EC2AF6AF3D00EAD20E /* UIViewController + Extension.swift */,
 				579BB5EE2AF6B6CA00EAD20E /* UITextField + Extension.swift */,
 			);
 			path = UIKit;
@@ -473,7 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				579BB5ED2AF6AF3D00EAD20E /* UIViewController + Extension.swift in Sources */,
 				57A960632AF81B2C00FCD537 /* ResultViewModel.swift in Sources */,
 				57A960862AF8228C00FCD537 /* ParameterEncoder.swift in Sources */,
 				579619A82AFA8C3500971B9C /* ResultVCWeatherFullInformationModel.swift in Sources */,
