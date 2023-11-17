@@ -4,5 +4,7 @@
 <dict>
 	<key>OpenWeatherMapAPIKey</key>
 	<string>48c416dce3eb3c49c52da05f47b1c033</string>
+	<key>UnsplashAPIAccesKey</key>
+	<string>PJRR--mPR-cHTxCwvSgZ3ZyGeBUSN-T1eev65xYV-j0</string>
 </dict>
 </plist>

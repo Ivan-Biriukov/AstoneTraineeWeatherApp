@@ -11,35 +11,37 @@ enum ImagesAPI {
 
 extension ImagesAPI: EndPointType {
     
-    var apiKey: String {
-        return "75GJGPAYJRNUG25FH4LK"
-    }
-    
-    var apiSecret: String {
-        return "GLQE8eyrL3^$sxJd7Y6mXb7MJgUKKmN2JhSfcV39"
-    }
-    
-    var apiHeaderTime: Int {
-        return Int(Date().timeIntervalSince1970)
-    }
-    
-    var data4Hash : String {
-        return apiKey + apiSecret + "\(apiHeaderTime)"
-    }
-    
-    var inputData: Data {
-        return Data(data4Hash.utf8)
-    }
-    
-    var hashString: String {
-        let hashed = Insecure.SHA1.hash(data: inputData)
-        return hashed.compactMap { String(format: "%02x", $0) }.joined()
+    var apiSecretsKey: String {
+        var key: String = ""
+        
+        guard let path = Bundle.main.path(forResource: "APIKeysList", ofType: "plist") else {
+            fatalError("APIKeysList.plist not found")
+        }
+        
+        guard let plistData = FileManager.default.contents(atPath: path) else {
+            fatalError("Unable to read APIKeysList.plist")
+        }
+        
+        var format = PropertyListSerialization.PropertyListFormat.xml
+        
+        do {
+            let plist = try PropertyListSerialization.propertyList(from: plistData, options: .mutableContainersAndLeaves, format: &format) as? [String: Any]
+            
+            guard let apiKey = plist?["UnsplashAPIAccesKey"] as? String else {
+                fatalError("UnsplashAPIAccesKey not found in APIKeysList.plist")
+            }
+            
+            key = apiKey
+        } catch {
+            fatalError("Error reading APIKeysList.plist: \(error)")
+        }
+        return key
     }
     
     var environmentBaseUrl: String {
         switch ImagesNetworkManager.environment {
         case .ImagesV1:
-            return "https://api.podcastindex.org/api/1.0/"
+            return "https://api.unsplash.com/photos/"
         }
     }
     
@@ -51,30 +53,30 @@ extension ImagesAPI: EndPointType {
     var path: String {
         switch self {
         case .getRandomImage:
-            <#code#>
+            return "search/photos"
         }
     }
     
     var httpMethod: HTTPMethod {
         switch self {
         case .getRandomImage:
-            <#code#>
+            return .get
         }
     }
     
     var task: HTTPTask {
         switch self {
         case .getRandomImage(ofCity: let city):
-            <#code#>
+            return .request(
+                bodyParam: nil,
+                urlParam: ["query" : "\(city)"]
+            )
         }
     }
     
     var header: HTTPHeader? {
         return [
-            "X-Auth-Date": "\(apiHeaderTime)",
-            "X-Auth-Key": apiKey,
-            "Authorization": hashString,
-            "User-Agent": "PodcastApp/1.0"
+            "client_id": apiSecretsKey
         ]
     }
 }

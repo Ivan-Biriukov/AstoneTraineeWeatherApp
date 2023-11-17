@@ -18,7 +18,7 @@ final class ImagesNetworkManager {
 
 extension ImagesNetworkManager: ImagesNetworkManagerProtocol {
     func fetchRandomImage(q: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        router.request(.getRandomImage(ofcity: q)) { data, response, error in
+        router.request(.getRandomImage(ofCity: q)) { data, response, error in
             guard error == nil, let data else {
                 completion(.failure(error!))
                 return
