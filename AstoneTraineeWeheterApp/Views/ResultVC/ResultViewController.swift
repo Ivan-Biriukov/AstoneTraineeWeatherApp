@@ -14,6 +14,7 @@ final class ResultViewController: BaseViewController {
     var viewModel: ResultViewModel?
     private var locationName: String
     private var forecastDataArray : [ForecastCollectionViewModel] = []
+    private var collectionViewCurrentItemValue: Int = 0
         
     // MARK: - UI Elemetns
     
@@ -136,6 +137,7 @@ final class ResultViewController: BaseViewController {
         btn.setImage(UIImage(systemName: "chevron.left.circle"), for: .normal)
         btn.addTarget(self, action: #selector(pervousForecastTaped), for: .touchUpInside)
         btn.tintColor = .systemGray4
+        btn.alpha = 0
         return btn
     }()
     
@@ -183,11 +185,11 @@ final class ResultViewController: BaseViewController {
 
 private extension ResultViewController {
     @objc func nextForecastTaped() {
-        
+        scrollCollection(direction: .forward)
     }
     
     @objc func pervousForecastTaped() {
-        
+        scrollCollection(direction: .backward)
     }
 }
 
@@ -283,6 +285,27 @@ private extension ResultViewController {
             make.height.width.equalTo(50)
         }})
     }
+    
+    func scrollCollection(direction: ScrolDirection) {
+        let visibleItems: NSArray = self.forecastCollectionView.indexPathsForVisibleItems as NSArray
+        let currentItem: IndexPath = visibleItems.object(at: 0) as! IndexPath
+
+        switch direction {
+        case .forward:
+            let nextItem: IndexPath = IndexPath(item: currentItem.item + 1, section: 0)
+            if nextItem.row < forecastDataArray.count {
+                self.forecastCollectionView.scrollToItem(at: nextItem, at: .left, animated: true)
+                self.pervousForecastButton.alpha = 1
+            }
+        case .backward:
+            let priveuos: IndexPath = IndexPath(item: currentItem.item - 1, section: 0)
+            if priveuos.row < forecastDataArray.count && priveuos.row >= 0 {
+                self.forecastCollectionView.scrollToItem(at: priveuos, at: .right, animated: true)
+            } else {
+                self.pervousForecastButton.alpha = 0
+            }
+        }
+    }
 }
 
 // MARK: - CollectionViewDelegate
@@ -343,4 +366,11 @@ private extension ResultViewController {
             }
         })
     }
+}
+
+// MARK: - ScrolDirection
+
+fileprivate enum ScrolDirection {
+    case forward
+    case backward
 }
