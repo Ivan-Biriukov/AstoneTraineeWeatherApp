@@ -297,11 +297,16 @@ private extension ResultViewController {
                 self.forecastCollectionView.scrollToItem(at: nextItem, at: .left, animated: true)
                 self.pervousForecastButton.alpha = 1
             }
+            if nextItem.row == forecastDataArray.count - 1 {
+                self.nextForecastsButton.alpha = 0
+            }
         case .backward:
-            let priveuos: IndexPath = IndexPath(item: currentItem.item - 1, section: 0)
-            if priveuos.row < forecastDataArray.count && priveuos.row >= 0 {
-                self.forecastCollectionView.scrollToItem(at: priveuos, at: .right, animated: true)
-            } else {
+            let previousItem: IndexPath = IndexPath(item: currentItem.item - 1, section: 0)
+            if previousItem.row >= 0 {
+                self.forecastCollectionView.scrollToItem(at: previousItem, at: .right, animated: true)
+                self.nextForecastsButton.alpha = 1
+            }
+            if previousItem.row == 0 {
                 self.pervousForecastButton.alpha = 0
             }
         }
