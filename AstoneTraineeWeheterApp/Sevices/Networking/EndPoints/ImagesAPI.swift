@@ -41,7 +41,7 @@ extension ImagesAPI: EndPointType {
     var environmentBaseUrl: String {
         switch ImagesNetworkManager.environment {
         case .ImagesV1:
-            return "https://api.unsplash.com/photos/"
+            return "https://api.unsplash.com/"
         }
     }
     
@@ -69,14 +69,12 @@ extension ImagesAPI: EndPointType {
         case .getRandomImage(ofCity: let city):
             return .request(
                 bodyParam: nil,
-                urlParam: ["query" : "\(city)"]
+                urlParam: ["client_id" : "\(apiSecretsKey)", "query" : "\(city)"]
             )
         }
     }
     
     var header: HTTPHeader? {
-        return [
-            "client_id": apiSecretsKey
-        ]
+        return nil
     }
 }
