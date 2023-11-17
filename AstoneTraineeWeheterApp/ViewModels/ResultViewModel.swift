@@ -8,7 +8,7 @@ final class ResultViewModel {
     
     // MARK: - Propertyes
     
-    let weatherNetwork : NetworkManagerProtocol = NetworkManager()
+    let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
     var currentDayWeather = Dynamic(ResultCurrentLocationModel(cityName: "", minTemp: 0, maxTemp: 0, wetherConditionImageID: "", currentTemp: 0, weatherConditionName: "", sunrise: "", sunset: ""))
     var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String(), fullWeatherInformation: nil)])
     

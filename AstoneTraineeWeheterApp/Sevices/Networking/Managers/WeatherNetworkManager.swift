@@ -7,19 +7,19 @@ enum NetworkResponse: String {
     case noData
 }
 
-protocol NetworkManagerProtocol {
+protocol WeatherNetworkManagerProtocol {
     func fetchCurrentWeatherByCityName(cityName: String, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchCurrentWeatherByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchWeatherForecastByCitiName(cityName: String, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchWeatherForecastByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
-final class NetworkManager {
-    static let environment: NetworkEnvironment = .WeatherV2point5
+final class WeatherNetworkManager {
+    static let environment: WeatherNetworkEnvironment = .WeatherV2point5
     private let router = Router<WeatherAPI>()
 }
 
-extension NetworkManager: NetworkManagerProtocol {
+extension WeatherNetworkManager: WeatherNetworkManagerProtocol {
     
     func fetchWeatherForecastByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void) {
         router.request(.getFiveDayForecastByLonLat(lon: lon, lat: lat)) { data, response, error in

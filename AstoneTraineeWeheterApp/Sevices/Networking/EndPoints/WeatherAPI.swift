@@ -1,6 +1,6 @@
 import Foundation
 
-enum NetworkEnvironment {
+enum WeatherNetworkEnvironment {
     case WeatherV2point5
 }
 
@@ -42,7 +42,7 @@ extension WeatherAPI: EndPointType {
     }
     
     var environmentBaseUrl: String {
-        switch NetworkManager.environment {
+        switch WeatherNetworkManager.environment {
         case .WeatherV2point5:
             return "https://api.openweathermap.org/data/2.5/"
         }
