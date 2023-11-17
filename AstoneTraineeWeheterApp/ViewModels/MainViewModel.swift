@@ -14,7 +14,7 @@ final class MainViewModel {
     
     // MARK: - Propertyes
     
-    let weatherNetwork : NetworkManagerProtocol = NetworkManager()
+    let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
     var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
     var isPosibleToNavigate = Dynamic(false)
     
