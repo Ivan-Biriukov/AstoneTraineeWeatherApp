@@ -87,7 +87,6 @@ final class LaunchViewController: BaseViewController {
         super.viewDidLoad()
         addSubviews()
         setupConstraints()
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLayoutSubviews() {
