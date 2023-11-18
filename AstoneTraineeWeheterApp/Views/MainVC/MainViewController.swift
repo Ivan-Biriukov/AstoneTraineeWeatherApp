@@ -1,15 +1,12 @@
 // MARK: - Imports
-
 import UIKit
 import SnapKit
 import CoreLocation
 
 // MARK: - MainViewController
-
 final class MainViewController: BaseViewController {
     
     // MARK: - Properties
-    
     var coordinator: AppCoordinator?
     var viewModel: MainViewModel?
     private let locationManager = CLLocationManager()
@@ -88,10 +85,6 @@ final class MainViewController: BaseViewController {
         setupConstraints()
         bindViewModel()
         viewModel?.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setupLocationManager()
     }
 }
@@ -143,7 +136,6 @@ private extension MainViewController {
 }
 
 // MARK: - Methods
-//TODO: -Добавить переход после поиска
 private extension MainViewController {
     
     @objc func searchButtonTaped() {
@@ -168,6 +160,11 @@ extension MainViewController: UITextFieldDelegate {
         textField.endEditing(true)
         textField.resignFirstResponder()
         makeWeatherSearchRequest()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = ""
         return true
     }
     
@@ -224,7 +221,13 @@ private extension MainViewController {
         viewModel?.isPosibleToNavigate.bind({ posible in
             if posible {
                 DispatchQueue.main.async { [unowned self] in
-                    self.coordinator?.showResultVC(with: self.searchField.text!)
+                    var tempText = self.searchField.text!
+                    while tempText.last == " " {
+                        tempText.removeLast()
+                    }
+                    if tempText.last != " " {
+                        self.coordinator?.showResultVC(with: tempText)
+                    }
                 }
             }
         })
@@ -242,7 +245,6 @@ private extension MainViewController {
 // MARK: - MainViewModelDelegate
 
 extension MainViewController: MainViewModelDelegate {
-    
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
             let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Please, change search request and try aghain!", preferredStyle: .alert)
@@ -265,6 +267,6 @@ extension MainViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+        print(error.localizedDescription)
     }
 }
