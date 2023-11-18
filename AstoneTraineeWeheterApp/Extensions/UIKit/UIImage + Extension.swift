@@ -19,7 +19,9 @@ extension UIImage {
     }
     
     struct Main {
-
+        static var currentLocation: UIImage? {
+            return UIImage(named: "currentLocation")
+        }
     }
     
     struct Alert {
