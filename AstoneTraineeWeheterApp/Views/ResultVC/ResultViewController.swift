@@ -96,7 +96,7 @@ final class ResultViewController: BaseViewController {
     }()
     
     private lazy var forecastLabel: UILabel = {
-        return createLabel(text: "5-Days Forecasts", font: .poppinsBold(of: 25), textColor: .systemBackground, alignment: .left, numbersOfRows: 1)
+        return createLabel(text: "5-Days Forecasts", font: .poppinsBold(of: 22), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
     }()
     
     private lazy var forecstBubbleView: UIVisualEffectView = {
@@ -105,18 +105,6 @@ final class ResultViewController: BaseViewController {
         blureView.layer.cornerRadius = 25
         blureView.clipsToBounds = true
         return blureView
-    }()
-    
-    private lazy var forecastDayLabel: UILabel = {
-        return createLabel(text: "Today", font: .poppinsSemiBold(of: 18), textColor: .black, alignment: .left, numbersOfRows: 1)
-    }()
-    
-    private lazy var forecastDateLabel: UILabel = {
-        return createLabel(text: "July, 21", font: .poppinsSemiBold(of: 18), textColor: .black, alignment: .right, numbersOfRows: 1)
-    }()
-    
-    private lazy var forecastTitlesStack: UIStackView = {
-        return createStackView(for: forecastDayLabel, forecastDateLabel, axis: .horizontal, spacing: 0, distribution: .equalSpacing, alignment: .center)
     }()
     
     private lazy var underlineView: UIView = {
@@ -197,9 +185,9 @@ private extension ResultViewController {
 private extension ResultViewController {
     
     func addSubviews() {
-        addSubviews(views: todayBubbleView, forecastLabel, forecstBubbleView)
+        addSubviews(views: todayBubbleView, forecstBubbleView)
         [locationTitleLabel, currentWeatherConditionStack, weatherConditionLabel, minMaxTempStack, sunConditionStack].forEach({todayBubbleView.contentView.addSubview($0)})
-        [forecastTitlesStack, underlineView, nextForecastsButton, pervousForecastButton, forecastCollectionView].forEach({forecstBubbleView.contentView.addSubview($0)})
+        [forecastLabel, underlineView, nextForecastsButton, pervousForecastButton, forecastCollectionView].forEach({forecstBubbleView.contentView.addSubview($0)})
     }
     
     func setupConstraints() {
@@ -207,7 +195,7 @@ private extension ResultViewController {
             make.width.equalToSuperview().dividedBy(1.5)
             make.height.equalTo(300)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
         }
         
         locationTitleLabel.snp.makeConstraints { make in
@@ -234,24 +222,19 @@ private extension ResultViewController {
             make.height.width.equalTo(75)
         }
         
-        forecastLabel.snp.makeConstraints { make in
-            make.top.equalTo(todayBubbleView.snp.bottom).offset(40)
-            make.leading.equalToSuperview().inset(20)
-        }
-        
         forecstBubbleView.snp.makeConstraints { make in
-            make.top.equalTo(forecastLabel.snp.bottom).offset(20)
+            make.top.equalTo(todayBubbleView.snp.bottom).offset(20)
             make.height.equalTo(200)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
-        forecastTitlesStack.snp.makeConstraints { make in
+        forecastLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
-            make.leading.trailing.equalToSuperview().inset(50)
+            make.leading.trailing.equalToSuperview()
         }
         
         underlineView.snp.makeConstraints { make in
-            make.top.equalTo(forecastTitlesStack.snp.bottom).offset(5)
+            make.top.equalTo(forecastLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(2)
         }
