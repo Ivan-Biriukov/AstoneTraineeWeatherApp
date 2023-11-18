@@ -157,6 +157,12 @@ final class ResultViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.getInitialData(city: locationName)
+        modifyNavBarUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        restoreStandartNavBarUI()
     }
     
     // MARK: - Init
@@ -295,6 +301,17 @@ private extension ResultViewController {
                 pervousForecastButton.alpha = 0
             }
         }
+    }
+    
+    func modifyNavBarUI() {
+        self.navigationController?.navigationBar.backgroundColor = .init(white: 0.7, alpha: 0.5)
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.layer.cornerRadius = 12
+    }
+    
+    func restoreStandartNavBarUI() {
+        self.navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.navigationBar.layer.cornerRadius = 0
     }
 }
 
