@@ -47,7 +47,7 @@ private extension MainViewModel {
                         let dayTemp = weather.main.temp_max
                         let nightTemp = weather.main.temp_min
                         
-                        self?.currentDayWeather.value = SearchCellViewModel(cityName: weather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
+                        self?.currentDayWeather.value = SearchCellViewModel(cityName: city, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
                         self?.isPosibleToNavigate.value = true
                     }
                     catch {

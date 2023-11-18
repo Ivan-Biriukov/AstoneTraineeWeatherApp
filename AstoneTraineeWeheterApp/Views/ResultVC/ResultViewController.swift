@@ -354,10 +354,14 @@ private extension ResultViewController {
             }
         })
         
+        //TODO: - Fix bug with navigationController - reason when we uploading image navvigation effect stacks a bit - so it's looks terrible
         viewModel?.cityImageURLString.bind({ cityImageString in
             DispatchQueue.main.async { [unowned self] in
                 self.backgroundImageView.kf.indicatorType = .activity
-                self.backgroundImageView.kf.setImage(with: URL(string: cityImageString))
+                guard let imageURLString = cityImageString else {
+                    return
+                }
+                self.backgroundImageView.kf.setImage(with: URL(string: imageURLString))
             }
         })
     }

@@ -13,7 +13,7 @@ final class ResultViewModel {
     var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String(), fullWeatherInformation: nil)])
     
     let imagesNetwork: ImagesNetworkManagerProtocol = ImagesNetworkManager()
-    var cityImageURLString = Dynamic("")
+    var cityImageURLString = Dynamic(String?(nil))
     
     // MARK: - Methods
     
@@ -93,7 +93,7 @@ private extension ResultViewModel {
             case .success(let data):
                 do {
                     let imagesURLString = try JSONDecoder().decode(ImagesSearchModel.self, from: data)
-                    self?.cityImageURLString.value = (imagesURLString.results.randomElement()?.urls.full)!
+                    self?.cityImageURLString.value = imagesURLString.results.first?.urls.full
                 }
                 catch {
                     print(error.localizedDescription)
