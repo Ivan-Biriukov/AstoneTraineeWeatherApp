@@ -38,11 +38,11 @@ final class LaunchViewController: BaseViewController {
     // MARK: - UI Elements
     
     private lazy var weatherTitleLabel: UILabel = {
-        return createLabel(text: "Weather", font: .poppinsBold(of: 54), textColor: .white, alignment: .center, numbersOfRows: 1)
+        return createLabel(text: "Weather", font: .systemFont(ofSize: 54, weight: .heavy), textColor: .white, alignment: .center, numbersOfRows: 1)
     }()
     
     private lazy var forecastTitleLabel: UILabel = {
-        return createLabel(text: "ForeCasts", font: .poppinsSemiBold(of: 54), textColor: .init(rgb: 0xDDB130), alignment: .center, numbersOfRows: 1)
+        return createLabel(text: "ForeCasts", font: .systemFont(ofSize: 54, weight: .bold), textColor: .init(rgb: 0xDDB130), alignment: .center, numbersOfRows: 1)
     }()
     
     private lazy var cloudImageView: UIImageView = {

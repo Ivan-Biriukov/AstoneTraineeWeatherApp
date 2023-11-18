@@ -1,16 +1,15 @@
 // MARK: - Imports
-
 import UIKit
 import SnapKit
+import CoreLocation
 
 // MARK: - MainViewController
-
 final class MainViewController: BaseViewController {
     
     // MARK: - Properties
-    
     var coordinator: AppCoordinator?
     var viewModel: MainViewModel?
+    private let locationManager = CLLocationManager()
     private var recentsLocations : [SearchCellViewModel] = []
     
     // MARK: - UI Elements
@@ -45,6 +44,21 @@ final class MainViewController: BaseViewController {
         return field
     }()
     
+    private lazy var weahterForCurrentLocationTitle: UILabel = {
+        return createLabel(text: "Get current location weather", font: .poppinsMedium(of: 16), textColor: .systemRed, alignment: .left, numbersOfRows: 1)
+    }()
+    
+    private lazy var weatherLocationButton: UIButton = {
+        let btn = UIButton()
+        btn.setImage(.Main.currentLocation, for: .normal)
+        btn.addTarget(self, action: #selector(getLocationWeatherTaped), for: .touchUpInside)
+        return btn
+    }()
+    
+    private lazy var locationStack: UIStackView = {
+        return createStackView(for: weahterForCurrentLocationTitle, weatherLocationButton , axis: .horizontal, spacing: 0, distribution: .equalSpacing, alignment: .center)
+    }()
+    
     private lazy var searchHistoryLabel: UILabel = {
         return createLabel(text: "Last searched", font: .poppinsSemiBold(of: 40), textColor: .systemBackground, alignment: .center, numbersOfRows: 1)
     }()
@@ -70,6 +84,8 @@ final class MainViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         bindViewModel()
+        viewModel?.delegate = self
+        setupLocationManager()
     }
 }
 
@@ -78,7 +94,7 @@ final class MainViewController: BaseViewController {
 private extension MainViewController {
     
     func addSubviews() {
-        addSubviews(views: searchField, searchHistoryLabel, searchResultsCollectionView)
+        addSubviews(views: searchField, locationStack, searchHistoryLabel, searchResultsCollectionView)
     }
     
     func setupConstraints() {
@@ -88,9 +104,18 @@ private extension MainViewController {
             make.leading.trailing.equalToSuperview().inset(25)
         }
         
+        locationStack.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(25)
+            make.top.equalTo(searchField.snp.bottom).offset(25)
+        }
+        
         searchHistoryLabel.snp.makeConstraints { make in
-            make.top.equalTo(searchField.snp.bottom).offset(40)
+            make.top.equalTo(locationStack.snp.bottom).offset(40)
             make.leading.trailing.equalToSuperview().inset(40)
+        }
+        
+        weatherLocationButton.snp.makeConstraints { make in
+            make.height.width.equalTo(40)
         }
         
         searchResultsCollectionView.snp.makeConstraints { make in
@@ -101,13 +126,16 @@ private extension MainViewController {
     }
     
     func makeWeatherSearchRequest() {
-        viewModel?.delegate = self
         viewModel?.searchButtonPressed(with: searchField.text!)
+    }
+    
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 
 // MARK: - Methods
-//TODO: -Добавить переход после поиска
 private extension MainViewController {
     
     @objc func searchButtonTaped() {
@@ -117,6 +145,10 @@ private extension MainViewController {
     @objc func didChangeText(_ sender: UITextField) {
         let textWithoutDot = sender.text?.replacingOccurrences(of: ".", with: " ", options: .literal, range: nil)
         sender.text = textWithoutDot
+    }
+    
+    @objc func getLocationWeatherTaped() {
+        locationManager.requestLocation()
     }
 }
 
@@ -128,6 +160,11 @@ extension MainViewController: UITextFieldDelegate {
         textField.endEditing(true)
         textField.resignFirstResponder()
         makeWeatherSearchRequest()
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = ""
         return true
     }
     
@@ -144,7 +181,6 @@ extension MainViewController: UITextFieldDelegate {
 // MARK: - UICollectionViewDelegate
 
 extension MainViewController: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let searchedLocation = recentsLocations[indexPath.row].cityName
         coordinator?.showResultVC(with: searchedLocation)
@@ -185,7 +221,21 @@ private extension MainViewController {
         viewModel?.isPosibleToNavigate.bind({ posible in
             if posible {
                 DispatchQueue.main.async { [unowned self] in
-                    self.coordinator?.showResultVC(with: self.searchField.text!)
+                    var tempText = self.searchField.text!
+                    while tempText.last == " " {
+                        tempText.removeLast()
+                    }
+                    if tempText.last != " " {
+                        self.coordinator?.showResultVC(with: tempText)
+                    }
+                }
+            }
+        })
+        
+        viewModel?.isPosibleToNavigateByLocation.bind({ resultInfo in
+            if resultInfo.isPosible {
+                DispatchQueue.main.async { [unowned self] in
+                    self.coordinator?.showResultVC(with: resultInfo.cityName)
                 }
             }
         })
@@ -195,7 +245,6 @@ private extension MainViewController {
 // MARK: - MainViewModelDelegate
 
 extension MainViewController: MainViewModelDelegate {
-    
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
             let alertController = UIAlertController(title: "Weather Search Error", message: message + " " + "Please, change search request and try aghain!", preferredStyle: .alert)
@@ -203,5 +252,21 @@ extension MainViewController: MainViewModelDelegate {
             alertController.addAction(okAction)
             self?.present(alertController, animated: true, completion: nil)
         }
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let lat = location.coordinate.latitude
+            let lon = location.coordinate.longitude
+            viewModel?.locationButtonPressed(lon: lon, lat: lat)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }

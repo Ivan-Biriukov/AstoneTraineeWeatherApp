@@ -8,14 +8,6 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Poppins-Bold.ttf">
-            <string>Poppins-Bold</string>
-        </array>
-        <array key="Poppins-SemiBold.ttf">
-            <string>Poppins-SemiBold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -35,14 +27,14 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-fr-vrS">
-                                <rect key="frame" x="75.666666666666671" y="59.000000000000007" width="241.66666666666663" height="75.666666666666686"/>
-                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="54"/>
+                                <rect key="frame" x="86.333333333333329" y="98" width="220.33333333333337" height="64.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="54"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ForeCasts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTQ-cC-7JC">
-                                <rect key="frame" x="58.333333333333343" y="142.66666666666666" width="276.33333333333326" height="75.666666666666657"/>
-                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="54"/>
+                                <rect key="frame" x="69.666666666666686" y="170.66666666666666" width="254" height="64.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="54"/>
                                 <color key="textColor" red="0.8666666666666667" green="0.69411764705882351" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -58,7 +50,7 @@
                             <constraint firstItem="Czk-IR-kY3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Jy2-aK-aPC"/>
                             <constraint firstItem="Czk-IR-kY3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="KL0-OF-BrD"/>
                             <constraint firstItem="Amb-fr-vrS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="i7r-4U-8wh"/>
-                            <constraint firstItem="Amb-fr-vrS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lkP-N5-j5F"/>
+                            <constraint firstItem="Amb-fr-vrS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="39" id="lkP-N5-j5F"/>
                             <constraint firstItem="jfT-u5-Hnk" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nGR-Jr-aMF"/>
                             <constraint firstItem="jfT-u5-Hnk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="p4W-qJ-r3v"/>
                         </constraints>
