@@ -84,8 +84,12 @@ final class MainViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         bindViewModel()
-        viewModel?.delegate = self
-        setupLocationManager()
+        setupDelegates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 
@@ -129,9 +133,9 @@ private extension MainViewController {
         viewModel?.searchButtonPressed(with: searchField.text!)
     }
     
-    func setupLocationManager() {
+    func setupDelegates() {
+        viewModel?.delegate = self
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
     }
 }
 
