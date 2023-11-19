@@ -83,7 +83,7 @@ final class LaunchViewController: BaseViewController {
         super.viewDidLayoutSubviews()
         startWeatherConditionFrame()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         launchAnimation()
