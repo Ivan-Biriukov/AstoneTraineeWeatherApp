@@ -1,28 +1,22 @@
 // MARK: - Imports
-
 import Foundation
 
 // MARK: - MainViewModelDelegate
-
 protocol MainViewModelDelegate: AnyObject {
     func showErrorAlert(_ message: String)
 }
 
 // MARK: - MainViewModel
-
 final class MainViewModel {
     
     // MARK: - Propertyes
-    
-    let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
+    private let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
     var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
     var isPosibleToNavigate = Dynamic(false)
     var isPosibleToNavigateByLocation = Dynamic((isPosible: false, cityName: ""))
-    
     weak var delegate: MainViewModelDelegate?
     
     // MARK: - Methods
-    
     func searchButtonPressed(with text: String) {
         getCurrentWeatherByName(for: text)
     }
@@ -33,7 +27,6 @@ final class MainViewModel {
 }
 
 // MARK: - Functionality Methods Extension
-
 private extension MainViewModel {
     
     func getCurrentWeatherByName(for city: String) {

@@ -1,6 +1,10 @@
+// MARK: - Imports
 import Foundation
 
+// MARK: - Extension URLRequest
 extension URLRequest {
+    
+    // MARK: - Methods
     public func cURL(pretty: Bool = false) -> String {
         let newLine = pretty ? "\\\n" : ""
         let method = (pretty ? "--request " : "-X ") + "\(self.httpMethod ?? "GET") \(newLine)"

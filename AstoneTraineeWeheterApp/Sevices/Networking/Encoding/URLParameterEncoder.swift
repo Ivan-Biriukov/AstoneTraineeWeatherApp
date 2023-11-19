@@ -1,5 +1,7 @@
+// MARK: - Imports
 import Foundation
 
+// MARK: - URLParameterEncoder
 struct URLParameterEncoder: ParameterEncoder {
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         guard let url = urlRequest.url else { throw NetworkError.badUrl }

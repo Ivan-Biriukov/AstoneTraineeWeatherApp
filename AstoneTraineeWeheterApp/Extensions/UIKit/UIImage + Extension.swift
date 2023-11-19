@@ -1,7 +1,10 @@
+// MARK: - Imports
 import UIKit.UIImage
 
+// MARK: - Extension UIImage
 extension UIImage {
     
+    // MARK: - Properties
     struct Common {
         static var baackground: UIImage? {
             return UIImage(named: "background")

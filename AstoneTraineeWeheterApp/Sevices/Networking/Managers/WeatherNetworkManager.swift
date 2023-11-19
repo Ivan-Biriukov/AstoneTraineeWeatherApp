@@ -1,3 +1,4 @@
+// MARK: - Imports
 import Foundation
 
 enum NetworkResponse: String {
@@ -7,6 +8,7 @@ enum NetworkResponse: String {
     case noData
 }
 
+// MARK: - WeatherNetworkManagerProtocol
 protocol WeatherNetworkManagerProtocol {
     func fetchCurrentWeatherByCityName(cityName: String, completion: @escaping (Result<Data, Error>) -> Void)
     func fetchCurrentWeatherByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void)
@@ -14,11 +16,13 @@ protocol WeatherNetworkManagerProtocol {
     func fetchWeatherForecastByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void)
 }
 
+// MARK: - WeatherNetworkManager
 final class WeatherNetworkManager {
     static let environment: WeatherNetworkEnvironment = .WeatherV2point5
     private let router = Router<WeatherAPI>()
 }
 
+// MARK: - Accepting WeatherNetworkManagerProtocol
 extension WeatherNetworkManager: WeatherNetworkManagerProtocol {
     
     func fetchWeatherForecastByLonLat(lon: Double, lat: Double, completion: @escaping (Result<Data, Error>) -> Void) {

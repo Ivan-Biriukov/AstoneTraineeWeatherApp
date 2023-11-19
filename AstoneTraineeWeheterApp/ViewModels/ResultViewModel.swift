@@ -1,22 +1,17 @@
 // MARK: - Imports
-
 import Foundation
 
 // MARK: - ResultViewModel
-
 final class ResultViewModel {
     
     // MARK: - Propertyes
-    
     let weatherNetwork: WeatherNetworkManagerProtocol = WeatherNetworkManager()
     var currentDayWeather = Dynamic(ResultCurrentLocationModel(cityName: "", minTemp: 0, maxTemp: 0, wetherConditionImageID: "", currentTemp: 0, weatherConditionName: "", sunrise: "", sunset: ""))
     var fiveDaysWeatherForecast = Dynamic([ForecastCollectionViewModel(tempValue: Int(), weatherConditionIconId: String(), timeValue: String(), fullWeatherInformation: nil)])
-    
     let imagesNetwork: ImagesNetworkManagerProtocol = ImagesNetworkManager()
     var cityImageURLString = Dynamic(String?(nil))
     
     // MARK: - Methods
-    
     func getInitialData(city: String) {
         fetchCurrentWeatherByName(cityName: city)
         getForecastWeatherByName(for: city)
@@ -25,7 +20,6 @@ final class ResultViewModel {
 }
 
 // MARK: - Functionality Methods Extension
-
 private extension ResultViewModel {
     func fetchCurrentWeatherByName(cityName: String) {
         weatherNetwork.fetchCurrentWeatherByCityName(cityName: cityName) { [weak self] result in
@@ -53,7 +47,6 @@ private extension ResultViewModel {
     }
     
     func getForecastWeatherByName(for city: String) {
-        
         var weatherForecasts : [ForecastCollectionViewModel] = []
         
         weatherNetwork.fetchWeatherForecastByCitiName(cityName: city) { [weak self] result in

@@ -1,7 +1,10 @@
+// MARK: - Imports
 import UIKit.UIColor
 
+// MARK: - Extension UIColor
 extension UIColor {
     
+    // MARK: - Convenience init
     convenience init(components red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         let const: CGFloat = 255.0
         self.init(red: red / const, green: green / const, blue: blue / const, alpha: alpha)

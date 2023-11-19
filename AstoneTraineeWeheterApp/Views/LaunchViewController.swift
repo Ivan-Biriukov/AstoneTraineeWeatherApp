@@ -1,10 +1,8 @@
 // MARK: - Imports
-
 import UIKit
 import SnapKit
 
 // MARK: - Constants
-
 extension LaunchViewController {
     struct Constants {
         
@@ -27,16 +25,13 @@ extension LaunchViewController {
 }
 
 // MARK: - LaunchViewController
-
 final class LaunchViewController: BaseViewController {
     
     // MARK: - Properties
-    
     private let constants: Constants
     var coordinator: AppCoordinator?
     
     // MARK: - UI Elements
-    
     private lazy var weatherTitleLabel: UILabel = {
         return createLabel(text: "Weather", font: .systemFont(ofSize: 54, weight: .heavy), textColor: .white, alignment: .center, numbersOfRows: 1)
     }()
@@ -48,7 +43,6 @@ final class LaunchViewController: BaseViewController {
     private lazy var cloudImageView: UIImageView = {
         let image = UIImageView(image: .Launch.clouds)
         image.contentMode = .scaleAspectFit
-        
         return image
     }()
     
@@ -58,7 +52,6 @@ final class LaunchViewController: BaseViewController {
         image.contentMode = .scaleAspectFit
         image.alpha = 0
         image.translatesAutoresizingMaskIntoConstraints = false
-        
         return image
     }()
     
@@ -66,12 +59,10 @@ final class LaunchViewController: BaseViewController {
         let button = createTitleButton(title: "Get Started", titleColor: .systemBackground, font: .poppinsBold(of: 28), backgroundColor: .init(rgb: 0xDDB130), cornerRadius: 36)
         button.addTarget(self, action: #selector(nextButtonTaped), for: .touchUpInside)
         button.alpha = 0
-        
         return button
     }()
     
     // MARK: - Init
-    
     init() {
         self.constants = Constants()
         super.init(nibName: nil, bundle: nil)
@@ -82,7 +73,6 @@ final class LaunchViewController: BaseViewController {
     }
     
     // MARK: - Life Cycle Methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
@@ -101,7 +91,6 @@ final class LaunchViewController: BaseViewController {
 }
 
 // MARK: - Private configure
-
 private extension LaunchViewController {
     
     func addSubviews() {
@@ -151,7 +140,6 @@ private extension LaunchViewController {
 }
 
 // MARK: - Button's Method's
-
 private extension LaunchViewController {
     @objc func nextButtonTaped() {
         coordinator?.showMainVC()

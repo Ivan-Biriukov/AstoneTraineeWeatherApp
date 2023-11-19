@@ -1,7 +1,10 @@
+// MARK: - Imports
 import UIKit.UIFont
 
+// MARK: - Extension UIFont
 extension UIFont {
     
+    // MARK: - Methods
     static func poppinsBold(of size: CGFloat) -> UIFont {
         guard let font = UIFont(name: "Poppins-Bold", size: size) else {
             return UIFont.systemFont(ofSize: size, weight: .bold)

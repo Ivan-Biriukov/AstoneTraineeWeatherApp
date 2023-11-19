@@ -1,5 +1,7 @@
+// MARK: - Imports
 import Foundation
 
+// MARK: - JSONParameterEncoder
 struct JSONParameterEncoder: ParameterEncoder {
     static func encode(urlRequest: inout URLRequest, with parameters: Parameters) throws {
         do {

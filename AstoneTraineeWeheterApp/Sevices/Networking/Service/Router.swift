@@ -1,12 +1,15 @@
+// MARK: -  Imports
 import Foundation
 
+// MARK: - Router
 final class Router<EndPoint: EndPointType>: NetworkRouter {
     
+    // MARK: - Properties
     private var task: URLSessionTask?
     
+    // MARK: - Methods
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
-        
         do {
             let request = try self.buildRequest(from: route)
             task = session.dataTask(with: request, completionHandler: { data, response, error in
@@ -24,6 +27,7 @@ final class Router<EndPoint: EndPointType>: NetworkRouter {
     }
 }
 
+// MARK: - Extensiont to Router
 fileprivate extension Router {
     func buildRequest(from route: EndPoint) throws -> URLRequest {
         var request = URLRequest(
@@ -57,9 +61,4 @@ fileprivate extension Router {
             throw error
         }
     }
-    
-//    func addHeader(_ header: HTTPHeader?, request: inout URLRequest) {
-//        guard let header else { return }
-//        header.forEach({ request.setValue($1, forHTTPHeaderField: $0) })
-//    }
 }

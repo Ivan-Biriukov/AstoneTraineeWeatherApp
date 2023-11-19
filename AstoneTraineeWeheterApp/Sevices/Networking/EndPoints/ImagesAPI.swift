@@ -1,16 +1,19 @@
+// MARK: - Imports
 import Foundation
-import CryptoKit
 
 enum ImagesNetworkEnvironment {
     case ImagesV1
 }
 
+// MARK: - ImagesAPI
 enum ImagesAPI {
     case getRandomImage(ofCity: String)
 }
 
+// MARK: - Accepting EndPointType to ImagesAPI
 extension ImagesAPI: EndPointType {
     
+    // MARK: - Properties
     var apiSecretsKey: String {
         var key: String = ""
         

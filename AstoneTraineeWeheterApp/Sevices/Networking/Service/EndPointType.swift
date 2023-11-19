@@ -1,5 +1,7 @@
+// MARK: - Imports
 import Foundation
 
+// MARK: - EndPointType
 protocol EndPointType {
     var baseUrl: URL { get }
     var path: String { get }

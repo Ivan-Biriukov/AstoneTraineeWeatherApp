@@ -1,9 +1,11 @@
+// MARK: - Imports
 import Foundation
 
 enum WeatherNetworkEnvironment {
     case WeatherV2point5
 }
 
+// MARK: - WeatherAPI
 enum WeatherAPI {
     case getWeatherByCityName(city: String)
     case getWeatherByLonLat(lon: Double, lat: Double)
@@ -11,8 +13,10 @@ enum WeatherAPI {
     case getFiveDaysForecastByCityName(city: String)
 }
 
+// MARK: - Accepting EndPointType to WeatherAPI
 extension WeatherAPI: EndPointType {
     
+    // MARK: - Properties
     var apiKey: String {
         var key: String = ""
         
