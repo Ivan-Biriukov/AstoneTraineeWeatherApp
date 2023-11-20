@@ -1,17 +1,15 @@
 // MARK: - Imports
-
 import UIKit
 import SnapKit
 import Kingfisher
 
 // MARK: - SearchResultCollectionViewCell
-
-final class SearchResultCollectionViewCell: UICollectionViewCell {
+final class SearchResultCollectionViewCell: BaseSwipeCollectionViewCell {
     
+    // MARK: - Properties
     static let identifier = "SearchResultCollectionCell"
     
     // MARK: - UI Elements
-    
     private lazy var cityLabel: UILabel = {
         let lb = UILabel()
         lb.font = .poppinsBold(of: 24)
@@ -59,8 +57,14 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         return lb
     }()
     
-    // MARK: - Init
+    let deleteImageView: UIImageView = {
+        let image = UIImage(systemName: "trash")?.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .white
+        return imageView
+    }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -71,7 +75,6 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Prepare For Reuse
-    
     override func prepareForReuse() {
         cityLabel.text = nil
         minMaxValueLabel.text = nil
@@ -80,13 +83,12 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
     }
         
     // MARK: - Configure Methods
-    
     private func configure() {
-        contentView.backgroundColor = UIColor.init(white: 1, alpha: 0.5)
-        contentView.layer.cornerRadius = 15
+        visibleContainerView.backgroundColor = UIColor.init(white: 1, alpha: 0.5)
+        visibleContainerView.layer.cornerRadius = 15
         
         [minMaxTitleLabel, minMaxValueLabel].forEach({minMaxStack.addArrangedSubview($0)})
-        [cityLabel, minMaxStack, weatherImageView, temperatureLabel].forEach({contentView.addSubview($0)})
+        [cityLabel, minMaxStack, weatherImageView, temperatureLabel].forEach({visibleContainerView.addSubview($0)})
         
         cityLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(15)
@@ -107,6 +109,16 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         temperatureLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(15)
             make.centerY.equalToSuperview()
+        }
+        
+        hiddenContainerView.backgroundColor = UIColor(red: 231.0 / 255.0, green: 76.0 / 255.0, blue: 60.0 / 255.0, alpha: 1)
+        hiddenContainerView.layer.cornerRadius = 15
+        
+        hiddenContainerView.addSubview(deleteImageView)
+        
+        deleteImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.width.equalTo(45)
         }
     }
     

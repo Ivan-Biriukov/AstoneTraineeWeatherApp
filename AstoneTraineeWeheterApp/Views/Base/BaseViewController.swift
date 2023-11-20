@@ -8,7 +8,6 @@ import SnapKit
 class BaseViewController: UIViewController {
     
     // MARK: - UI Elements
-    
     lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.image = .Common.baackground
@@ -17,7 +16,6 @@ class BaseViewController: UIViewController {
     }()
     
     // MARK: - Life Cycle Methods
-
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
@@ -25,7 +23,6 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Configure Methods
-    
     private func addBackground() {
         view.addSubview(backgroundImageView)
         backgroundImageView.snp.makeConstraints { make in
@@ -82,7 +79,7 @@ class BaseViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
     
-    // MARK: - Methods
+    // MARK: - Selectors
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
