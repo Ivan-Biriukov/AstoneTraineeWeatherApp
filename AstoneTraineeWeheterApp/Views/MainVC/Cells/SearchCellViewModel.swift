@@ -6,5 +6,4 @@ struct SearchCellViewModel {
     let nightTepm: Int
     let wetherConditionImageID: String
     let currentTemp: Int
-    let action: () -> ()
 }

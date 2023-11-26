@@ -11,7 +11,7 @@ final class MainViewModel {
     
     // MARK: - Propertyes
     private let weatherNetwork : WeatherNetworkManagerProtocol = WeatherNetworkManager()
-    var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0, action: {}))
+    var currentDayWeather = Dynamic(SearchCellViewModel(cityName: "", dayTemp: 0, nightTepm: 0, wetherConditionImageID: "", currentTemp: 0))
     var isPosibleToNavigate = Dynamic(false)
     var isPosibleToNavigateByLocation = Dynamic((isPosible: false, cityName: ""))
     weak var delegate: MainViewModelDelegate?
@@ -46,7 +46,7 @@ private extension MainViewModel {
                         let dayTemp = weather.main.temp_max
                         let nightTemp = weather.main.temp_min
                         
-                        self?.currentDayWeather.value = SearchCellViewModel(cityName: tempSearchText, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
+                        self?.currentDayWeather.value = SearchCellViewModel(cityName: tempSearchText, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: weather.weather.first!.icon, currentTemp: Int(weather.main.temp.rounded(.toNearestOrAwayFromZero)))
                         self?.isPosibleToNavigate.value = true
                     }
                     catch {
@@ -71,7 +71,7 @@ private extension MainViewModel {
                     let dayTemp = locationWeather.main.temp_max
                     let nightTemp = locationWeather.main.temp_min
                     
-                    self?.currentDayWeather.value = SearchCellViewModel(cityName: locationWeather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: locationWeather.weather.first!.icon, currentTemp: Int(locationWeather.main.temp.rounded(.toNearestOrAwayFromZero)), action: {})
+                    self?.currentDayWeather.value = SearchCellViewModel(cityName: locationWeather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: locationWeather.weather.first!.icon, currentTemp: Int(locationWeather.main.temp.rounded(.toNearestOrAwayFromZero)))
                     self?.isPosibleToNavigateByLocation.value = (isPosible: true, cityName: locationWeather.name)
                 }
                 catch {
