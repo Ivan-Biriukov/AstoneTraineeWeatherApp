@@ -69,7 +69,6 @@ final class MainViewController: BaseViewController {
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 54, height: 100)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.backgroundColor = .clear
-        collection.delegate = self
         collection.dataSource = self
         collection.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
@@ -84,8 +83,12 @@ final class MainViewController: BaseViewController {
         addSubviews()
         setupConstraints()
         bindViewModel()
-        viewModel?.delegate = self
-        setupLocationManager()
+        setupDelegates()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 
@@ -129,9 +132,9 @@ private extension MainViewController {
         viewModel?.searchButtonPressed(with: searchField.text!)
     }
     
-    func setupLocationManager() {
+    func setupDelegates() {
+        viewModel?.delegate = self
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
     }
 }
 
@@ -153,7 +156,6 @@ private extension MainViewController {
 }
 
 // MARK: - UITextFieldDelegate
-
 extension MainViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -178,17 +180,7 @@ extension MainViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - UICollectionViewDelegate
-
-extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let searchedLocation = recentsLocations[indexPath.row].cityName
-        coordinator?.showResultVC(with: searchedLocation)
-    }
-}
-
 // MARK: - UICollectionViewDataSource
-
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -202,13 +194,13 @@ extension MainViewController: UICollectionViewDataSource {
         }
         
         let currentCell = recentsLocations[indexPath.row]
+        cell.delegate = self
         cell.fill(viewModel: currentCell)
         return cell
     }
 }
 
 // MARK: - ViewModel Bindings
-
 private extension MainViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
@@ -243,7 +235,6 @@ private extension MainViewController {
 }
 
 // MARK: - MainViewModelDelegate
-
 extension MainViewController: MainViewModelDelegate {
     func showErrorAlert(_ message: String) {
         DispatchQueue.main.async { [weak self] in
@@ -268,5 +259,21 @@ extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+    }
+}
+
+// MARK: - BaseSwipeCollectionViewCellDelegate
+extension MainViewController: BaseSwipeCollectionViewCellDelegate {
+    
+    func visibleContainerViewTapped(inCell cell: UICollectionViewCell) {
+        guard let indexPath = searchResultsCollectionView.indexPath(for: cell) else { return }
+        let searchedLocation = recentsLocations[indexPath.row].cityName
+        coordinator?.showResultVC(with: searchedLocation)
+    }
+    
+    func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
+        guard let indexPath = searchResultsCollectionView.indexPath(for: cell) else { return }
+        recentsLocations.remove(at: indexPath.item)
+        searchResultsCollectionView.reloadData()
     }
 }
