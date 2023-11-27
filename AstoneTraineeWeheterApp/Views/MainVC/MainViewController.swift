@@ -84,6 +84,7 @@ final class MainViewController: BaseViewController {
         setupConstraints()
         bindViewModel()
         setupDelegates()
+        recentsLocations = viewModel?.loadSavedData() ?? []
     }
     
     override func viewWillAppear(_ animated: Bool) {

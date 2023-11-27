@@ -1,5 +1,5 @@
 // MARK: - Imports
-import Foundation
+import UIKit
 import CoreData
 
 // MARK: - SavingManager
@@ -8,36 +8,13 @@ final class SavingManager {
     // MARK: - Properties
     static let shared = SavingManager()
     
-    private let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "SavedSearchedLocations")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    private lazy var context: NSManagedObjectContext = {
-        return persistentContainer.viewContext
-    }()
-    
-    func saveContext () {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }
 
 // MARK: - Public Methods
 extension SavingManager {
     
-    func saveSearchedLocation(location: SearchCellViewModel, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func saveSearchedLocation(for location: SearchCellViewModel) {
         let newLocation = SavedSearchedLocations(context: self.context)
         newLocation.cityName = location.cityName
         newLocation.currentTemp = Int16(location.currentTemp)
@@ -46,12 +23,6 @@ extension SavingManager {
         newLocation.wetherConditionImageID = location.wetherConditionImageID
         
         saveContext()
-//        do {
-//            try context.save()
-//            completion(.success(true))
-//        } catch {
-//            completion(.failure(error))
-//        }
     }
     
     func loadSavedLocations() -> [SearchCellViewModel] {
@@ -71,7 +42,16 @@ extension SavingManager {
     }
     
     func removeLocation(at row: Int) {
-        
+
+        saveContext()
+    }
+    
+    func saveContext() {
+        do{
+            try context.save()
+        } catch {
+            print("Error saving Categories \(error)")
+        }
     }
 }
 
