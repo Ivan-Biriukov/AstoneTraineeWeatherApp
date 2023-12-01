@@ -83,7 +83,7 @@ private extension MainViewModel {
                     let nightTemp = locationWeather.main.temp_min
                     
                     self?.currentDayWeather.value = SearchCellViewModel(cityName: locationWeather.name, dayTemp: Int(dayTemp.rounded(.toNearestOrAwayFromZero)), nightTepm: Int(nightTemp.rounded(.toNearestOrAwayFromZero)), wetherConditionImageID: locationWeather.weather.first!.icon, currentTemp: Int(locationWeather.main.temp.rounded(.toNearestOrAwayFromZero)))
-                    
+            //TODO: - Сделать проверку, если в сохраненных данных уже есть с таким именем - не сохранять
                     self?.savingManager.saveSearchedLocation( for: (self?.currentDayWeather.value)!)
                     self?.isPosibleToNavigateByLocation.value = (isPosible: true, cityName: locationWeather.name)
                 }
