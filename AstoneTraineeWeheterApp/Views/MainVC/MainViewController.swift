@@ -205,11 +205,7 @@ extension MainViewController: UICollectionViewDataSource {
 private extension MainViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
-            if self.recentsLocations.contains(where: { searchCellViewModel in
-                searchCellViewModel.cityName != searchResult.cityName
-            }) {
-                self.recentsLocations.append(searchResult)
-            }
+            self.recentsLocations.append(searchResult)
             DispatchQueue.main.async { [unowned self] in
                 self.searchResultsCollectionView.reloadData()
             }
