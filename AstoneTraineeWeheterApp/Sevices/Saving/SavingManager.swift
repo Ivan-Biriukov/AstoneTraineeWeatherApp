@@ -42,17 +42,14 @@ extension SavingManager {
     }
     
     func removeLocation(at row: Int, in dataArray: [SearchCellViewModel]) {
-        let tempItemToDelete: SavedSearchedLocations = .init(context: self.context)
-        let transformDataTemp = dataArray[row]
-        tempItemToDelete.cityName = transformDataTemp.cityName
-        tempItemToDelete.currentTemp = Int16(transformDataTemp.currentTemp)
-        tempItemToDelete.dayTemp = Int32(transformDataTemp.dayTemp)
-        tempItemToDelete.nightTepm = Int16(transformDataTemp.nightTepm)
-        tempItemToDelete.wetherConditionImageID = transformDataTemp.wetherConditionImageID
-    
-        context.delete(tempItemToDelete)
-        
-        saveContext()
+        let request: NSFetchRequest<SavedSearchedLocations> = SavedSearchedLocations.fetchRequest()
+        do {
+            let locs = try context.fetch(request)
+                context.delete(locs[row])
+                saveContext()
+        } catch {
+            print(error)
+        }
     }
     
     func saveContext() {
