@@ -274,6 +274,7 @@ extension MainViewController: BaseSwipeCollectionViewCellDelegate {
     
     func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
         guard let indexPath = searchResultsCollectionView.indexPath(for: cell) else { return }
+        viewModel?.removeSavedItem(at: indexPath.item, in: recentsLocations)
         recentsLocations.remove(at: indexPath.item)
         searchResultsCollectionView.reloadData()
     }

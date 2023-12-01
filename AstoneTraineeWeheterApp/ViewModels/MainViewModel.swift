@@ -29,6 +29,10 @@ final class MainViewModel {
     func loadSavedData() -> [SearchCellViewModel] {
         return savingManager.loadSavedLocations()
     }
+    
+    func removeSavedItem(at row: Int, in dataArray: [SearchCellViewModel]) {
+        savingManager.removeLocation(at: row, in: dataArray)
+    }
 }
 
 // MARK: - Functionality Methods Extension
