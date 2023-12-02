@@ -15,14 +15,22 @@ final class SavingManager {
 extension SavingManager {
     
     func saveSearchedLocation(for location: SearchCellViewModel) {
-        let newLocation = SavedSearchedLocations(context: self.context)
-        newLocation.cityName = location.cityName
-        newLocation.currentTemp = Int16(location.currentTemp)
-        newLocation.dayTemp = Int32(location.dayTemp)
-        newLocation.nightTepm = Int16(location.nightTepm)
-        newLocation.wetherConditionImageID = location.wetherConditionImageID
-        
-        saveContext()
+        let request: NSFetchRequest<SavedSearchedLocations> = SavedSearchedLocations.fetchRequest()
+        do {
+            let locs = try context.fetch(request)
+            if !locs.contains(where: {$0.cityName == location.cityName}) {
+                let newLocation = SavedSearchedLocations(context: self.context)
+                newLocation.cityName = location.cityName
+                newLocation.currentTemp = Int16(location.currentTemp)
+                newLocation.dayTemp = Int32(location.dayTemp)
+                newLocation.nightTepm = Int16(location.nightTepm)
+                newLocation.wetherConditionImageID = location.wetherConditionImageID
+                
+                saveContext()
+            }
+        } catch {
+            print(error)
+        }
     }
     
     func loadSavedLocations() -> [SearchCellViewModel] {
