@@ -56,6 +56,8 @@
 		57AF22842B0828ED00164700 /* ImagesSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AF22832B0828ED00164700 /* ImagesSearchModel.swift */; };
 		57CD8ED82B0AE08700F22B33 /* BaseSwipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CD8ED72B0AE08700F22B33 /* BaseSwipeCollectionViewCell.swift */; };
 		57CD8EDA2B0AE10A00F22B33 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CD8ED92B0AE10A00F22B33 /* UIView + Extension.swift */; };
+		57D787CB2B13AA5F009CA228 /* SavingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D787CA2B13AA5F009CA228 /* SavingManager.swift */; };
+		57D787D02B13E277009CA228 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57D787CE2B13E277009CA228 /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +110,8 @@
 		57AF22832B0828ED00164700 /* ImagesSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSearchModel.swift; sourceTree = "<group>"; };
 		57CD8ED72B0AE08700F22B33 /* BaseSwipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSwipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		57CD8ED92B0AE10A00F22B33 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
+		57D787CA2B13AA5F009CA228 /* SavingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingManager.swift; sourceTree = "<group>"; };
+		57D787CF2B13E277009CA228 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 			children = (
 				579619A42AFA657E00971B9C /* ResultVCModels */,
 				579619A32AFA656F00971B9C /* Decoding Models */,
+				57D787CE2B13E277009CA228 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				57A9607D2AF821F500FCD537 /* Networking */,
+				57D787C62B13A8E7009CA228 /* Saving */,
 			);
 			path = Sevices;
 			sourceTree = "<group>";
@@ -400,6 +406,14 @@
 				57A9609C2AF8243A00FCD537 /* URLRequest+Extension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		57D787C62B13A8E7009CA228 /* Saving */ = {
+			isa = PBXGroup;
+			children = (
+				57D787CA2B13AA5F009CA228 /* SavingManager.swift */,
+			);
+			path = Saving;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,12 +518,14 @@
 				5739C7BF2AF5908500B0834B /* BaseViewController.swift in Sources */,
 				579DE3D32AF5AD560036078E /* UIImage + Extension.swift in Sources */,
 				57AF22802B08201200164700 /* ImagesNetworkManager.swift in Sources */,
+				57D787CB2B13AA5F009CA228 /* SavingManager.swift in Sources */,
 				579BB5F22AF6E13D00EAD20E /* SearchResultCollectionViewCell.swift in Sources */,
 				57A960902AF8232900FCD537 /* HTTPTask.swift in Sources */,
 				5739C7A42AF58CD600B0834B /* AppDelegate.swift in Sources */,
 				579BB5E62AF6640B00EAD20E /* Coordinator.swift in Sources */,
 				579BB5EB2AF6ABBE00EAD20E /* MainViewController.swift in Sources */,
 				57A9605E2AF7B51C00FCD537 /* ResultViewController.swift in Sources */,
+				57D787D02B13E277009CA228 /* CoreDataModel.xcdatamodeld in Sources */,
 				57A960922AF8234500FCD537 /* NetworkRouter.swift in Sources */,
 				579619AA2AFA95F800971B9C /* BaseAlertView.swift in Sources */,
 				57A9608E2AF8231400FCD537 /* HTTPMethod.swift in Sources */,
@@ -774,6 +790,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		57D787CE2B13E277009CA228 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				57D787CF2B13E277009CA228 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 57D787CF2B13E277009CA228 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5739C7982AF58CD600B0834B /* Project object */;
 }

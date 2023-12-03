@@ -84,6 +84,7 @@ final class MainViewController: BaseViewController {
         setupConstraints()
         bindViewModel()
         setupDelegates()
+        recentsLocations = viewModel?.loadSavedData() ?? []
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -204,9 +205,11 @@ extension MainViewController: UICollectionViewDataSource {
 private extension MainViewController {
     func bindViewModel() {
         viewModel?.currentDayWeather.bind({ searchResult in
-            self.recentsLocations.append(searchResult)
-            DispatchQueue.main.async { [unowned self] in
-                self.searchResultsCollectionView.reloadData()
+            if !self.recentsLocations.contains(where: {$0.cityName == searchResult.cityName}) {
+                self.recentsLocations.append(searchResult)
+                DispatchQueue.main.async { [unowned self] in
+                    self.searchResultsCollectionView.reloadData()
+                }
             }
         })
         
@@ -273,6 +276,7 @@ extension MainViewController: BaseSwipeCollectionViewCellDelegate {
     
     func hiddenContainerViewTapped(inCell cell: UICollectionViewCell) {
         guard let indexPath = searchResultsCollectionView.indexPath(for: cell) else { return }
+        viewModel?.removeSavedItem(at: indexPath.item, in: recentsLocations)
         recentsLocations.remove(at: indexPath.item)
         searchResultsCollectionView.reloadData()
     }

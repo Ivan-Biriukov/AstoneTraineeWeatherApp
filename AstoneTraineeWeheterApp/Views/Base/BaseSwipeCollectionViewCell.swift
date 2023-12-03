@@ -68,11 +68,17 @@ class BaseSwipeCollectionViewCell: UICollectionViewCell {
         
     }
     
+    func scrollToVisibleContainerView() {
+        let visibleContainerViewFrame = visibleContainerView.convert(visibleContainerView.bounds, to: scrollView)
+        scrollView.scrollRectToVisible(visibleContainerViewFrame, animated: false)
+    }
+    
     @objc private func visibleContainerViewTapped() {
         delegate?.visibleContainerViewTapped(inCell: self)
     }
     
     @objc private func hiddenContainerViewTapped() {
         delegate?.hiddenContainerViewTapped(inCell: self)
+        scrollToVisibleContainerView()
     }
 }
