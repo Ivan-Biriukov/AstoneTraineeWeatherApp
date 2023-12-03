@@ -37,13 +37,15 @@
 
   <p align="center">
 <img src="https://github.com/Ivan-Biriukov/AstoneTraineeWeheterApp/assets/102241612/0f97e462-f2a1-445f-9c4b-2c096870621a" width="30%";>  
+<img src="https://github.com/Ivan-Biriukov/AstoneTraineeWeheterApp/assets/102241612/4ff9b317-6348-4c21-807f-5f885589dc6b" width="30%";>  
 </p>
 
 ---
 <h3 align="center">Light Mode:
 
   <p align="center">
-<img src="https://github.com/Ivan-Biriukov/AstoneTraineeWeheterApp/assets/102241612/6ee5b7f1-6bbb-46b1-867a-ce6de4e052a2" width="30%";>  
+<img src="https://github.com/Ivan-Biriukov/AstoneTraineeWeheterApp/assets/102241612/6ee5b7f1-6bbb-46b1-867a-ce6de4e052a2" width="30%";>
+<img src="https://github.com/Ivan-Biriukov/AstoneTraineeWeheterApp/assets/102241612/836610c6-41fe-4aa5-b149-1c8ffcdb311e" width="30%";> 
 </p>
 
 ---
