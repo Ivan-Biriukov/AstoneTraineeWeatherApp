@@ -6,7 +6,7 @@ extension UIImage {
     
     // MARK: - Properties
     struct Common {
-        static var baackground: UIImage? {
+        static var background: UIImage? {
             return UIImage(named: "background")
         }
     }

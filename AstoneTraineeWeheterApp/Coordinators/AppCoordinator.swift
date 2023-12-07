@@ -10,6 +10,7 @@ final class AppCoordinator: Coordinator {
     // MARK: - init
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.view.backgroundColor = UIColor(patternImage: UIImage.Common.background!)
     }
     
     // MARK: - Methods

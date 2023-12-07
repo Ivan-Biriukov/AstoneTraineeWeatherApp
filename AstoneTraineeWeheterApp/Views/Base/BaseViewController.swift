@@ -10,7 +10,7 @@ class BaseViewController: UIViewController {
     // MARK: - UI Elements
     lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
-        image.image = .Common.baackground
+        image.image = .Common.background
         image.clipsToBounds = true
         return image
     }()
