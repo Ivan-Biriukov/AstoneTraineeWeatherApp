@@ -61,7 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5739C7A02AF58CD600B0834B /* AstoneTraineeWeheterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstoneTraineeWeheterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5739C7A02AF58CD600B0834B /* AstoneTraineeWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstoneTraineeWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5739C7A32AF58CD600B0834B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5739C7A72AF58CD600B0834B /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		5739C7AC2AF58CDA00B0834B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		5739C7A12AF58CD600B0834B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5739C7A02AF58CD600B0834B /* AstoneTraineeWeheterApp.app */,
+				5739C7A02AF58CD600B0834B /* AstoneTraineeWeatherApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -419,9 +419,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5739C79F2AF58CD600B0834B /* AstoneTraineeWeheterApp */ = {
+		5739C79F2AF58CD600B0834B /* AstoneTraineeWeatherApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5739C7B42AF58CDA00B0834B /* Build configuration list for PBXNativeTarget "AstoneTraineeWeheterApp" */;
+			buildConfigurationList = 5739C7B42AF58CDA00B0834B /* Build configuration list for PBXNativeTarget "AstoneTraineeWeatherApp" */;
 			buildPhases = (
 				5739C79C2AF58CD600B0834B /* Sources */,
 				5739C79D2AF58CD600B0834B /* Frameworks */,
@@ -431,13 +431,13 @@
 			);
 			dependencies = (
 			);
-			name = AstoneTraineeWeheterApp;
+			name = AstoneTraineeWeatherApp;
 			packageProductDependencies = (
 				579DE3D52AF5AEAC0036078E /* SnapKit */,
 				5795EA452AF991FB00B6EA3B /* Kingfisher */,
 			);
 			productName = AstoneTraineeWeheterApp;
-			productReference = 5739C7A02AF58CD600B0834B /* AstoneTraineeWeheterApp.app */;
+			productReference = 5739C7A02AF58CD600B0834B /* AstoneTraineeWeatherApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -455,7 +455,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5739C79B2AF58CD600B0834B /* Build configuration list for PBXProject "AstoneTraineeWeheterApp" */;
+			buildConfigurationList = 5739C79B2AF58CD600B0834B /* Build configuration list for PBXProject "AstoneTraineeWeatherApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -472,7 +472,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5739C79F2AF58CD600B0834B /* AstoneTraineeWeheterApp */,
+				5739C79F2AF58CD600B0834B /* AstoneTraineeWeatherApp */,
 			);
 		};
 /* End PBXProject section */
@@ -739,7 +739,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5739C79B2AF58CD600B0834B /* Build configuration list for PBXProject "AstoneTraineeWeheterApp" */ = {
+		5739C79B2AF58CD600B0834B /* Build configuration list for PBXProject "AstoneTraineeWeatherApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5739C7B22AF58CDA00B0834B /* Debug */,
@@ -748,7 +748,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5739C7B42AF58CDA00B0834B /* Build configuration list for PBXNativeTarget "AstoneTraineeWeheterApp" */ = {
+		5739C7B42AF58CDA00B0834B /* Build configuration list for PBXNativeTarget "AstoneTraineeWeatherApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5739C7B52AF58CDA00B0834B /* Debug */,
