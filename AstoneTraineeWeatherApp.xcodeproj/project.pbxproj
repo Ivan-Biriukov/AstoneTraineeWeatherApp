@@ -684,6 +684,7 @@
 				INFOPLIST_FILE = AstoneTraineeWeheterApp/Supporting_Files/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Our application requires access to your geolocation. This is necessary for the built-in functionality to quickly obtain weather data where you are. If you reject the agreement, the functionality for quickly determining the weather based on your geolocation will not be available!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -693,7 +694,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeheterApp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -716,6 +717,7 @@
 				INFOPLIST_FILE = AstoneTraineeWeheterApp/Supporting_Files/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WeahterSample;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Our application requires access to your geolocation. This is necessary for the built-in functionality to quickly obtain weather data where you are. If you reject the agreement, the functionality for quickly determining the weather based on your geolocation will not be available!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -725,7 +727,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeheterApp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.IvanBiriukov.AstoneTraineeWeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
