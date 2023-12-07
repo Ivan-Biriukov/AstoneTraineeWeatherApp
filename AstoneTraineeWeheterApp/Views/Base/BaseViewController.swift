@@ -1,23 +1,30 @@
+// MARK: - Imports
+
 import UIKit
 import SnapKit
 
+// MARK: - BaseViewController
+
 class BaseViewController: UIViewController {
     
-    private lazy var backgroundImageView: UIImageView = {
+    // MARK: - UI Elements
+    lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
-        image.image = .Common.baackground
+        image.image = .Common.background
         image.clipsToBounds = true
         return image
     }()
-
+    
+    // MARK: - Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackground()
+        hideKeyboardWhenTappedAround()
     }
     
+    // MARK: - Configure Methods
     private func addBackground() {
         view.addSubview(backgroundImageView)
-        
         backgroundImageView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -56,13 +63,25 @@ class BaseViewController: UIViewController {
         return label
     }
     
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: nil, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+    func createTitleButton(title: String, titleColor: UIColor, font: UIFont, backgroundColor: UIColor, cornerRadius: CGFloat) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = cornerRadius
+        button.titleLabel?.font = font
+        return button
     }
     
-    @objc func dismissKeyboard() {
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: - Selectors
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 }
+
